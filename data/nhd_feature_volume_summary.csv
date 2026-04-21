@@ -1,0 +1,134 @@
+nhd_id,nhd_name,nhd_ftype,nhd_layer,unique_sources,unique_wells,volume_Mgal,median_score,median_dist_km
+66392615,Tunkhannock Creek,460.0,flowline,56,596,3897.87,100.0,27.9
+123862354,Allegheny River,558.0,flowline,17,122,3536.02,100.0,5.9
+66404293,Meshoppen Creek,558.0,flowline,83,645,2931.77,100.0,8.2
+99686060,Ohio River,558.0,flowline,11,292,2739.33,100.0,26.5
+43482891,Susquehanna River,558.0,flowline,45,546,2452.27,100.0,49.5
+99412026,Monongahela River,558.0,flowline,33,222,1768.32,100.0,15.2
+66909823,Lycoming Creek,558.0,flowline,18,73,1492.72,100.0,4.9
+73867740,Ohio River,558.0,flowline,7,123,1413.85,100.0,28.6
+123972854,Allegheny River,558.0,flowline,7,68,1205.8,100.0,8.6
+66391741,Martins Creek,460.0,flowline,31,442,906.87,100.0,22.4
+66393113,East Branch Wyalusing Creek,460.0,flowline,22,300,903.25,100.0,5.4
+66908151,Loyalsock Creek,558.0,flowline,39,177,865.37,100.0,14.0
+57349837,Cowanesque River,558.0,flowline,6,42,826.48,100.0,10.8
+69913267,Sewickley Creek,558.0,flowline,3,13,805.48,100.0,5.5
+69914033,Youghiogheny River,558.0,flowline,6,50,773.85,100.0,14.4
+66909693,Loyalsock Creek,558.0,flowline,10,45,662.03,100.0,9.2
+66396793,Susquehanna River,558.0,flowline,38,359,623.88,100.0,42.2
+99418400,Monongahela River,558.0,flowline,6,32,618.08,100.0,22.2
+66404117,Towanda Creek,558.0,flowline,31,132,578.07,100.0,15.9
+66408521,Susquehanna River,558.0,flowline,27,101,562.99,100.0,19.1
+123856763,Mahoning Creek,558.0,flowline,2,24,539.15,100.0,2.8
+126216397,Connoquenessing Creek,558.0,flowline,5,23,496.74,100.0,10.4
+66912735,Loyalsock Creek,558.0,flowline,6,37,490.15,100.0,5.4
+66396873,Wyalusing Creek,558.0,flowline,14,78,483.69,100.0,5.8
+125292343,Kiskiminetas River,558.0,flowline,1,11,479.56,100.0,2.8
+73874006,North Fork Dunkard Fork,460.0,flowline,1,48,436.01,100.0,7.5
+73878122,Fish Creek,558.0,flowline,1,44,435.51,100.0,8.1
+69912331,Little Sewickley Creek,460.0,flowline,2,15,418.97,100.0,1.9
+66535313,Marsh Creek,460.0,flowline,1,29,416.96,100.0,4.8
+166905492,Monongahela River,558.0,flowline,4,28,389.48,100.0,21.2
+46462625,Choconut Creek,558.0,flowline,11,70,375.76,100.0,11.7
+99411452,Little Tenmile Creek,460.0,flowline,3,23,365.29,82.92682926829268,4.5
+125294379,Beaver Run Reservoir,390.0,waterbody,4,16,337.45,100.0,4.9
+66399085,Meshoppen Creek,460.0,flowline,26,103,336.68,100.0,4.6
+57352913,Fellows Creek,460.0,flowline,1,36,323.76,100.0,1.6
+123971889,Buffalo Creek,558.0,flowline,5,23,292.38,100.0,8.1
+126221696,Thorn Creek,558.0,flowline,5,16,262.87,100.0,3.7
+123858488,Crooked Creek,558.0,flowline,1,11,256.54,100.0,3.9
+99684172,Raccoon Creek,558.0,flowline,2,23,246.17,96.0,3.4
+57352857,Fall Brook,558.0,flowline,12,83,239.22,100.0,8.9
+126218603,Connoquenessing Creek,558.0,flowline,6,17,239.15,100.0,1.7
+66911253,Lycoming Creek,558.0,flowline,6,34,223.29,87.5,2.8
+66541285,Pine Creek,558.0,flowline,6,20,215.56,100.0,8.2
+99684474,Ohio River,558.0,flowline,5,41,211.12,100.0,5.0
+126220431,Brush Creek,460.0,flowline,3,20,207.38,100.0,11.2
+61116397,West Branch Susquehanna River,558.0,flowline,2,5,195.12,87.27272727272728,22.4
+123973812,Buffalo Creek,558.0,flowline,2,6,193.78,100.0,3.2
+57350471,Cowanesque River,558.0,flowline,10,36,178.08,100.0,13.5
+66402477,Tunkhannock Creek,558.0,flowline,13,98,176.24,100.0,15.8
+66402637,Sugar Creek,460.0,flowline,2,8,158.23,88.0,2.9
+43486867,Susquehanna River,558.0,flowline,9,51,151.49,100.0,26.7
+66401983,Sugar Creek,558.0,flowline,19,82,146.99,100.0,19.9
+66401155,Tunkhannock Creek,558.0,flowline,13,52,126.19,100.0,16.0
+66394003,North Branch Wyalusing Creek,460.0,flowline,2,9,125.02,80.76923076923077,1.3
+66535373,Marsh Creek,460.0,flowline,2,11,118.99,100.0,13.5
+57351455,Crooked Creek,558.0,flowline,1,12,104.85,100.0,5.5
+99415582,Browns Creek,460.0,flowline,1,9,102.29,100.0,2.1
+57352447,Fellows Creek,460.0,flowline,6,54,99.98,100.0,2.5
+46465211,Wappasening Creek,558.0,flowline,10,65,88.11,100.0,13.9
+123973198,Little Buffalo Creek,460.0,flowline,1,11,84.38,100.0,4.6
+73870274,Robinson Fork,460.0,flowline,2,2,75.97,100.0,1.6
+99412542,Tenmile Creek,558.0,flowline,2,9,74.85,100.0,2.3
+66537087,Elk Run,558.0,flowline,1,26,73.4,100.0,23.2
+66392833,Martins Creek,558.0,flowline,8,57,61.62,100.0,6.9
+48522650,Chemung River,558.0,flowline,3,5,57.21,100.0,18.6
+66398893,North Branch Sugar Creek,460.0,flowline,5,36,50.17,100.0,2.0
+73865242,Buffalo Creek,558.0,flowline,2,2,45.01,100.0,8.9
+57352387,Fellows Creek,460.0,flowline,2,8,44.01,100.0,4.4
+123864297,Rock Run,558.0,flowline,4,11,42.79,100.0,48.3
+57352133,Tioga River,558.0,flowline,1,1,35.74,100.0,24.3
+66411099,Bowman Creek,558.0,flowline,7,162,35.14,100.0,28.7
+123855591,Little Sandy Creek,460.0,flowline,2,2,33.57,100.0,5.5
+66400265,Sugar Creek,460.0,flowline,8,36,33.33,100.0,25.7
+73874024,North Fork Dunkard Fork,558.0,flowline,1,3,32.28,93.87755102040816,3.2
+57350873,Cowanesque River,558.0,flowline,2,8,29.31,100.0,23.9
+123714685,Blacklick Creek,558.0,flowline,1,2,28.17,100.0,9.6
+66399645,Martins Creek,558.0,flowline,5,7,26.26,100.0,2.1
+66403725,Meshoppen Creek,558.0,flowline,5,7,24.23,100.0,2.4
+66535869,Pine Creek,460.0,flowline,2,4,22.71,100.0,15.1
+133258397,Towanda Creek,460.0,flowline,1,4,22.61,100.0,25.2
+66537645,Wilson Creek,460.0,flowline,1,13,21.17,100.0,4.6
+126217271,Sawmill Run Reservoir,390.0,waterbody,1,2,20.07,82.35294117647058,1.0
+73868616,Middle Wheeling Creek,460.0,flowline,2,2,19.64,100.0,5.4
+99414730,Ruff Creek,558.0,flowline,1,13,18.86,100.0,26.0
+99684478,Thorn Run,460.0,flowline,2,5,18.73,100.0,39.0
+126223833,Brush Creek,558.0,flowline,1,2,13.23,100.0,7.2
+73877782,Fish Creek,558.0,flowline,1,1,12.19,100.0,27.1
+64190796,Little Sandy Creek,558.0,flowline,1,2,11.8,100.0,1.5
+123918556,Beaver River,558.0,flowline,2,1,11.66,80.0,7.1
+123860848,Sandy Lick Creek,460.0,flowline,2,2,11.48,100.0,24.3
+66403211,Towanda Creek,558.0,flowline,2,2,10.77,100.0,2.0
+66408453,Sugar Hollow Creek,460.0,flowline,8,31,9.74,80.0,45.3
+73870318,Ohio River,558.0,flowline,1,2,9.38,100.0,20.1
+66400751,Susquehanna River,558.0,flowline,3,10,8.73,100.0,22.3
+66395935,East Branch Wyalusing Creek,460.0,flowline,1,2,7.65,87.5,6.6
+123861490,Little Mahoning Creek,558.0,flowline,1,1,7.5,100.0,3.8
+99414716,Ruff Creek,558.0,flowline,3,3,7.4,100.0,4.199999999999999
+46465047,Choconut Creek,460.0,flowline,4,15,7.23,100.0,13.2
+66401907,Towanda Creek,558.0,flowline,1,1,6.58,100.0,10.0
+66907851,Loyalsock Creek,558.0,flowline,2,4,6.52,100.0,30.549999999999997
+66409277,Mehoopany Creek,558.0,flowline,1,2,6.05,100.0,4.8
+123971719,Little Buffalo Creek,460.0,flowline,1,7,5.66,100.0,3.8
+64191442,Rubles Run,460.0,flowline,1,3,5.46,100.0,3.1
+48522844,Chemung River,558.0,flowline,2,10,4.76,100.0,13.8
+66408573,Sugar Hollow Creek,460.0,flowline,4,5,4.58,80.0,25.5
+123861796,East Branch Mahoning Creek,460.0,flowline,1,1,4.55,100.0,1.5
+61424412,First Fork Sinnemahoning Creek,460.0,flowline,1,1,4.21,100.0,5.7
+66913423,Lycoming Creek,558.0,flowline,3,6,3.67,87.5,6.1
+123720029,Two Lick Creek,558.0,flowline,1,1,3.65,100.0,3.9
+66411119,South Branch Bowman Creek,460.0,flowline,1,22,2.94,83.72093023255813,59.8
+112368875,Allegheny River,558.0,flowline,1,1,1.64,100.0,23.4
+73870634,Wheeling Creek,558.0,flowline,1,8,1.56,100.0,11.2
+66398139,Tinker Creek,460.0,flowline,1,1,1.5,81.81818181818181,46.9
+43490309,Salt Lick Creek,558.0,flowline,1,3,1.39,100.0,0.6
+43490693,Salt Lick Creek,558.0,flowline,1,10,1.31,100.0,20.4
+48523828,Fall Creek,558.0,flowline,1,1,1.12,86.95652173913044,56.5
+66409697,Keeler Creek,460.0,flowline,1,13,1.09,83.33333333333334,50.1
+48522408,Seeley Creek,558.0,flowline,3,15,0.85,100.0,12.2
+66400619,Wyalusing Creek,558.0,flowline,1,1,0.81,100.0,10.1
+112377615,Potato Creek,558.0,flowline,1,1,0.46,100.0,6.1
+48522466,Seeley Creek,558.0,flowline,1,9,0.45,100.0,26.8
+66403839,Tunkhannock Creek,558.0,flowline,2,4,0.45,100.0,33.5
+66402961,Wyalusing Creek,558.0,flowline,1,1,0.33,100.0,18.6
+27069769,Monongahela River,558.0,flowline,2,3,0.24,100.0,45.3
+66540295,Flicks Run,558.0,flowline,3,2,0.18,86.95652173913044,10.4
+69916497,Youghiogheny River,558.0,flowline,2,5,0.05,100.0,15.6
+73876296,Grave Creek,460.0,flowline,2,7,0.05,84.61538461538461,44.1
+99686114,Ohio River,558.0,flowline,1,4,0.04,100.0,66.0
+43488395,Susquehanna River,558.0,flowline,1,2,0.03,100.0,25.6
+99412598,Tenmile Creek,558.0,flowline,1,8,0.03,100.0,20.6
+66402523,Ellis Creek,460.0,flowline,1,5,0.02,83.33333333333334,29.3
+65630763,Lackawanna River,558.0,flowline,1,1,0.0,100.0,27.6
+66409425,Bowman Creek,558.0,flowline,1,1,0.0,80.0,45.7

@@ -1,6 +1,9 @@
 # Large NHD data files — download from USGS if needed
 data/NHD_H_Pennsylvania_State_GDB.zip
 data/NHD_PA_named.gpkg
+data/NHD_H_West_Virginia_State_GDB.zip
+data/NHD_WV_named.gpkg
+data/NHD_combined_named.gpkg
 
 # Executed notebook copies (outputs bloat; source notebooks are canonical)
 *_run.ipynb

@@ -8,7 +8,7 @@ National Hydrography Dataset (NHD) for geographic/watershed analysis.
 
 ## Background
 An earlier project scraped PA DEP fracking completion reports. Attempts to link source names
-to PA DEP water databases (PASDA, WMPDU) were abandoned due to unreliable/incomplete DEP data
+to PA DEP water databases (PASDA, WMPDU) were set aside due to unreliable/incomplete DEP data
 and inconsistent naming. This project pivots to USGS NHD as the reference dataset instead.
 
 ## Data files (`data/`)
@@ -20,6 +20,9 @@ and inconsistent naming. This project pivots to USGS NHD as the reference datase
 | `NHD_H_Pennsylvania_State_GDB.zip` | Raw USGS NHD download for Pennsylvania (247 MB) |
 | `NHD_PA_named.gpkg` | Extracted NHD named features only: NHDFlowline (127,509) + NHDWaterbody (2,863), WGS84 |
 | `nhd_match_results.parquet` | NHD match results per unique source: search_name, nhd_name, score, dist_km, nhd_id |
+| `srbc_docket_info.parquet` | 72 SRBC dockets: approved_source, lat, lon, county, subbasin, approval_type |
+| `srbc_coords_lookup.parquet` | planSource → srbc_lat, srbc_lon, srbc_source_name (397 rows) |
+| `nhd_feature_volume_summary.csv` | Per-NHD-feature withdrawal totals (high/good matches only) |
 
 ## External data
 - **`skinny_df.parquet`** at `G:\My Drive\production\repos\openFF_data_2026_04_03\skinny_df.parquet`
@@ -61,9 +64,14 @@ Steps:
 
 Results saved to `data/nhd_match_results.parquet`.
 
-Match quality (1,035 candidates with extractable name):
-- Score ≥ 90: 724 (70%)
-- Score ≥ 80: 797 (77%)
+Three matching passes run (see Session 2 in journal for detail):
+1. **Main pass** — PA NHD only, well-proxy coords
+2. **SRBC re-match** — precise docket PDF coords + SRBC-confirmed source name (3 runs per source: planSource+SRBC coord, SRBC name+SRBC coord, planSource+original coord)
+3. **WV border re-match** — combined PA+WV NHD, Mon→Monongahela expansion, fallback for generic extracted names
+
+Final match quality (1,035 candidates with extractable name):
+- Score ≥ 90: 846 (82%)
+- Score ≥ 80: 884 (85%)
 - Score < 60:  29 (<3%)
 
 ## Key design decisions
@@ -87,14 +95,35 @@ Match quality (1,035 candidates with extractable name):
 | `nhd_match_results.parquet` | NHD match per unique candidate source: search_name, nhd_id, nhd_name, score, dist_km |
 | `junction_nhd_matched.parquet` | Full junction table (49,363 rows) with NHD match columns and `match_tier` added |
 
-Volume by match tier (all junction rows): high ≥90: 37%, good 80-89: 1.3%, fair 60-79: 9.3%, low <60: 0.5%, unmatched: 51.9%.
-Of surface/impoundment/SRBC candidates: high+good covers 58.5% of candidate volume.
+Volume by match tier (all junction rows): high ≥90: 40.5%, good 80-89: 1.1%, fair 60-79: 6.1%, low <60: 0.4%, unmatched: 51.9%.
+Of surface/impoundment/SRBC candidates: high+good covers 63.5% of candidate volume.
 
-## Known gaps / future work
-- ~570 NHD candidates had no extractable feature name (mostly impoundments); SRBC docket
-  lookup could fill some coordinate/name gaps
-- WV NHD data not yet downloaded; sources near PA/WV border (Fish Creek WV, Monongahela)
-  may need it
-- `dont_know` bucket (11% of volume) is correctly flagged as unresolvable with current data;
-  some entries (SWW, WI) might be resolvable with additional reference data
-- `ambiguous` bucket (4% of volume) contains ~626 unique unrecognized strings worth future review
+## Additional notebooks / scripts
+
+### `srbc_docket_lookup.ipynb`
+Downloads SRBC approval PDFs for all docket numbers in the junction table (72 unique dockets),
+parses for withdrawal coordinates and approved source name. All 72 returned usable data.
+Outputs: `srbc_docket_info.parquet`, `srbc_coords_lookup.parquet`.
+
+### `extract_wv_nhd.py`
+Downloads WV NHD GDB, extracts eastern WV named features (lon > -82.5), builds
+`NHD_WV_named.gpkg` and `NHD_combined_named.gpkg` (PA + eastern WV, 189,708 features).
+
+### `analysis.ipynb`
+Loads `junction_nhd_matched.parquet` and produces:
+- Volume by source type (pie chart)
+- NHD match quality by volume (tier table)
+- Top NHD features by withdrawal volume (bar chart)
+- Volume by year and source type (area chart, joins skinny_df for dates)
+- Well map colored by dominant source type (scatter, joins skinny_df for coords)
+- Reuse fraction trend by year
+- Volume by major river basin (Susquehanna, Monongahela, Ohio/Allegheny, etc.)
+- Unmatched/low-confidence inventory (dont_know, ambiguous, fair/low NHD matches)
+- Export: `nhd_feature_volume_summary.csv`
+
+## Next priority
+**Improve coverage of ambiguous/unknown/low-confidence planSources** — `dont_know` (11% vol),
+`ambiguous` (4% vol), and fair/low NHD matches are the main remaining gap. Focused triage:
+- `dont_know` SWW/WI entries may be resolvable as interconnection via PA DEP PWSID lookup
+- `ambiguous` strings need rule review — some may be classifiable with additional regex
+- Fair/low NHD matches (score 60-79): some fixable with better name normalization

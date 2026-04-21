@@ -159,3 +159,104 @@ Reran both notebooks; output files regenerated (NHD match results unchanged sinc
 - `ambiguous` bucket (4% of volume, ~626 unique strings): further rule refinement possible
 - Consider WV NHD download for wells near the PA/WV border (Fish Creek WV, Monongahela)
 - Consider SRBC docket lookup to fill coordinate gaps for unmatched impoundment sources
+
+---
+
+## 2026-04-21 — Session 2
+
+### Step 9 — SRBC docket PDF lookup (`srbc_docket_lookup.ipynb`)
+
+Built a scraper for the SRBC WAAV portal. No public API exists; the portal returns PDFs at:
+`https://www.srbc.gov/waav/Search/getdocket?projectnumber={docket}&documenttype=Approval&isabre=False`
+
+Parser using `pdfplumber`: splits PDF text on "Source Information" headers, extracts
+`Approved Source`, lat/lon from `Withdrawal Location ... Lat: X.X N Long: X.X W`, county,
+municipality, subbasin, approval type. Guard added to skip sections where "Approved Source:"
+is absent (section headings produce spurious empty records otherwise).
+
+For multi-source dockets: used `rapidfuzz.fuzz.partial_ratio` to match each planSource
+against the SRBC-confirmed source names and pick the best.
+
+Results: **all 72 unique dockets** successfully parsed, all with usable coordinates.
+Outputs: `data/srbc_docket_info.parquet` (72 rows), `data/srbc_coords_lookup.parquet`
+(397 unique planSources, 387 with coordinates).
+
+### Step 10 — WV NHD integration (`extract_wv_nhd.py`)
+
+Downloaded WV NHD state GDB (177 MB) from USGS. Extracted named NHDFlowline and
+NHDWaterbody features in eastern WV (lon > -82.5, lat > 38.5) — 59,336 features.
+Combined with PA named features (130,372) to produce `NHD_combined_named.gpkg`
+(189,708 total features). Large files excluded from git via `.gitignore`.
+
+### Step 11 — SRBC re-match (nhd_matcher.ipynb, cells 12-13)
+
+For all SRBC-tagged candidates, ran three (name, coord) combinations and kept best score:
+- **Run A**: planSource-extracted name + SRBC withdrawal-point coords
+- **Run B**: SRBC approved_source name + SRBC coords
+- **Run C**: planSource-extracted name + original well-proxy coords (fallback when SRBC
+  coords are misleading, e.g. docket covers a different source than the planSource name)
+
+Score ≥ 90 improved from **724 → 822**.
+
+### Step 12 — WV border re-match (nhd_matcher.ipynb, cell after 13)
+
+Added WV-specific name expansions: `Mon → Monongahela`, `Nunkard → Dunkard`, `Whg → Wheeling`.
+
+Added fallback for degenerate extracted names: when `extract_search_name()` degrades to
+a bare water-type word (e.g. `"River"` from `"Monongahela @ River Speers"`), fall back to
+the planSource stripped of `@ location` suffixes before applying normalization.
+
+Combined NHD (`NHD_combined_named.gpkg`) used so WV streams (Monongahela River,
+North Fork Dunkard Fork, Fish Creek) are findable.
+
+Result: **26 border sources improved**, score ≥ 90 went from **822 → 846**.
+All "Mon River" variants (25 sources) now correctly link to Monongahela River at score 100.
+"North Fork Nunkard Fork" → "North Fork Dunkard Fork" at score 100.
+
+**Final NHD match quality (1,035 candidates):**
+- Score ≥ 90: 846 (82%)
+- Score 80-89: 38 (4%)
+- Score 60-79: 122 (12%)
+- Score < 60: 29 (3%)
+
+**Final volume attribution — all 49,363 junction rows:**
+
+| Tier | Records | Volume (Mgal) | % of total |
+|---|---|---|---|
+| high (≥90) | 16,320 | 40,405 | 40.5% |
+| good (80-89) | 323 | 1,075 | 1.1% |
+| fair (60-79) | 1,866 | 6,058 | 6.1% |
+| low (<60) | 86 | 365 | 0.4% |
+| unmatched | 22,137 | 51,747 | 51.9% |
+
+**Surface / impoundment / SRBC candidates only:**
+
+| Tier | Records | Volume (Mgal) | % of candidate vol |
+|---|---|---|---|
+| high (≥90) | 16,320 | 40,405 | 61.9% |
+| good (80-89) | 323 | 1,075 | 1.6% |
+| fair (60-79) | 1,866 | 6,058 | 9.3% |
+| low (<60) | 86 | 365 | 0.6% |
+| unmatched | 5,766 | 17,325 | 26.6% |
+
+### Step 13 — Analysis notebook (`analysis.ipynb`)
+
+New notebook with nine sections:
+1. **Volume by source type** — pie chart; surface_direct 49%, interconnection 15%,
+   impoundment 16%, dont_know 11%, reuse 3%
+2. **NHD match quality by volume** — tier table for all rows and candidate rows
+3. **Top NHD features** — 133 unique features linked; Tunkhannock Creek #1 at 3,898 Mgal,
+   Allegheny River #2 at 3,536 Mgal, Meshoppen Creek #3 at 2,932 Mgal
+4. **Volume by year** — stacked area chart; joins skinny_df `date` column for completion year
+5. **Well map** — scatter plot colored by dominant source type, sized by volume
+6. **Reuse trend** — dual-axis: total volume + % recycled by year
+7. **Basin rollup** — regex assignment to Susquehanna / Monongahela / Ohio-Allegheny /
+   Delaware / Other from NHD feature names
+8. **Unmatched inventory** — dont_know and ambiguous top sources by volume; fair/low matches
+9. **Export** — `data/nhd_feature_volume_summary.csv` (133 NHD features, high/good only)
+
+### Next priority (top of list)
+**Improve ambiguous/unknown/low-confidence planSources.** The remaining coverage gaps:
+- `dont_know` (11% vol): SWW, WI-suffix entries may be classifiable as interconnection
+- `ambiguous` (4% vol, ~626 unique strings): rule review needed
+- Fair/low NHD matches (score 60-79): some fixable with targeted normalization
