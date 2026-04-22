@@ -1,0 +1,320 @@
+planSource,curated_type,notes,source_type,volume_Mgal,operator_clean,dep_score,dep_src,dep_type
+B8,impoundment,,ambiguous,18.35,pennenergy resources,33.3333333333,BUSH,surface_water
+B39,impoundment,,ambiguous,12.59,pennenergy resources,50,RW-39,groundwater
+W32,impoundment,,ambiguous,12.51,pennenergy resources,57.1428571429,PW13,groundwater
+W16,impoundment,,ambiguous,11.96,pennenergy resources,66.6666666667,WP1,groundwater
+B37,impoundment,,ambiguous,7.98,pennenergy resources,50,S - 237,groundwater
+Parys Water Immpoundment,impoundment,,ambiguous,3.95,chesapeake appalachia,71.7948717949,RES IMPOUNDMENT,surface_water
+B12,impoundment,,ambiguous,3.47,pennenergy resources,50,SWW 2,surface_water
+Isabell Impounment (Chesapeake),impoundment,,ambiguous,3.23,blackhill energy,64.5161290323,CHESAPEAKE APPALACHIA INTC,interconnection
+Containment Water,impoundment,,ambiguous,2.85,eqt chap,70.9677419355,MENNO WATER CO INTC,interconnection
+W56,impoundment,,ambiguous,0.23,pennenergy resources,57.1428571429,PW15,groundwater
+Cratty Pad Freshwater Storage Tank (AST),impoundment,,ambiguous,0.07,xto energy,73.6842105263,STORAGE WELL,groundwater
+B24,impoundment,,ambiguous,0.01,pennenergy resources,50,SWW 2,surface_water
+B25,impoundment,,ambiguous,0.01,pennenergy resources,50,SWW 2,surface_water
+B5,impoundment,,ambiguous,0.01,pennenergy resources,40,CWOB051W,groundwater
+B7,impoundment,,ambiguous,0.01,pennenergy resources,40,PW7,groundwater
+W9,impoundment,,ambiguous,0.01,pennenergy resources,40,WP1,groundwater
+W23,impoundment,,ambiguous,0.01,pennenergy resources,57.1428571429,PW13,groundwater
+"Fresh Impoudment Miller, No Docket associated",impoundment,,ambiguous,0.01,repsol oil & gas usa,62.5,FRESH WATER,groundwater
+B&B Investment Group Freshwater Imp,impoundment,,ambiguous,0,chesapeake appalachia,70.5882352941,HIERONIMUS#2 FRESHWATER IMPOUNDMENT,surface_water
+Louis Water Impooundment,impoundment,,ambiguous,0,chesapeake appalachia,66.6666666667,RES IMPOUNDMENT,surface_water
+CHK Hoover Water Impoindment,impoundment,,ambiguous,0,chesapeake appalachia,66.6666666667,RAIN WATER,surface_water
+CHK Beirne Water Impoindment,impoundment,,ambiguous,0,chesapeake appalachia,66.6666666667,RAIN WATER,surface_water
+Solanick,impoundment,,ambiguous,0,bkv opr,55.5555555556,SLACKS RUN,surface_water
+W60,impoundment,,ambiguous,0.01,pennenergy resources,50,W60R (WELL),groundwater
+Storage Tanks/Rain,impoundment,,ambiguous,5.31,rockdale marcellus,73.6842105263,STORAGE WELL,groundwater
+Shell Fresh - Goodwin and Eggleston Source,impoundment,,ambiguous,2.36,jklm energy,66.6666666667,GOODWIN QUARRY INTC,interconnection
+Containment,impoundment,,ambiguous,0.36,eqt chap,59.2592592593,EXCO IMPOUNDMENT,surface_water
+Veselich Above Storage Tank,impoundment,,ambiguous,0.24,xto energy,73.6842105263,STORAGE WELL,groundwater
+6. Containment,impoundment,,ambiguous,0.12,eqt chap,57.1428571429,SEDIMENT POND 1,surface_water
+5. Containment Water,impoundment,,ambiguous,0.06,eqt chap,68.4210526316,MOUNTAIN WATER ASSN INTC,interconnection
+5. Storage Tanks/Rain,impoundment,,ambiguous,0.05,rockdale marcellus,73.6842105263,STORAGE WELL,groundwater
+6. Containment Water,impoundment,,ambiguous,0.04,eqt chap,68.4210526316,MOUNTAIN WATER ASSN INTC,interconnection
+6. Forwarded Freshwater,impoundment,,ambiguous,0,eqt chap,63.6363636364,BAILEY FRESHWATER POND,surface_water
+Willimsport Municiple (Lundy),interconnection,,ambiguous,40.02,eqt aro,78.2608695652,MUNICIPLE POND,surface_water
+Healthy Properties Take Point,interconnection,,ambiguous,19.19,blackhill energy,76.5957446809,HEALTHY PROPERTIES INC SUGAR CREEK INTC,interconnection
+SW PA Water Auhtority- Source #18,interconnection,,ambiguous,0,eqt chap,76.1904761905,PA AMER WATER INTC,interconnection
+MESHIPPEN BOROUGH WATER CO,interconnection,,ambiguous,0.48,swn prod co,78.431372549,HUGHESVILLE BORO WATER CO INTC,interconnection
+Ken Black TWL and Pump Pad,reuse,,ambiguous,91.97,laurel mountain production,62.2222222222,PUMP AND TREAT WELL,groundwater
+Various PGE Pads,reuse,,ambiguous,23.87,pa gen energy co,51.8518518519,PRITTS DIST,surface_water
+SENECA OPERATED SITES,reuse,,ambiguous,8.61,swn prod co,62.5,SENECA RES CORP MARSH CREEK INTC,interconnection
+JKLM OPERATED SITES,reuse,,ambiguous,7.22,swn prod co,55.5555555556,RV SITES WELL,groundwater
+ROCKDALE OPERATED SITES,reuse,,ambiguous,6.78,swn prod co,55.8139534884,CROOKED CREEK SITE 2,surface_water
+ALTA OPERATED SITES,reuse,,ambiguous,4.57,swn prod co,56.4102564103,WEST EARL WATER AUTH,interconnection
+REPSOL OPERATED SITES,reuse,,ambiguous,4.17,swn prod co,58.8235294118,RV SITES WELL,groundwater
+Onsite Treated,reuse,,ambiguous,3.8,eqt chap,66.6666666667,APPALACHIA WATER SVCS TREATED EFFLUENT INTC,interconnection
+LWI,reuse,,ambiguous,3.44,inflection energy,54.5454545455,SWEPI LP INTC,interconnection
+Brin/Frac,reuse,,ambiguous,3.37,eqt chap,70.5882352941,HFR BARN,groundwater
+Various Other Operators Pads,reuse,,ambiguous,3.28,pa gen energy co,54.2372881356,PA AMER WATER CO CANTON MTR VLT SOURCE 147 INTC,interconnection
+Seneca Operated Sites,reuse,,ambiguous,3.16,swn prod co,62.5,SENECA RES CORP MARSH CREEK INTC,interconnection
+TI-07 Cupper Pad,reuse,,ambiguous,2.99,swn prod co,51.4285714286,PA AMER WATER INTC 35371,interconnection
+TI-09 BROWN PAD,reuse,,ambiguous,2.84,swn prod co,51.8518518519,POND 9 LOWER,surface_water
+JKLM Operated Sites,reuse,,ambiguous,2.73,swn prod co,55.5555555556,RV SITES WELL,groundwater
+RANGE OPERATED SITES,reuse,,ambiguous,2.64,swn prod co,65.1162790698,RANGE RES (PA AMER PITTS SOURCE 86) INTC,interconnection
+Alta Operated Sites,reuse,,ambiguous,2.16,swn prod co,56.4102564103,WEST EARL WATER AUTH,interconnection
+BEECH RESOURCES OPERATED SITES,reuse,,ambiguous,2.02,swn prod co,75,RANGE RESOURCES INTC,interconnection
+FLOHS PAD,reuse,,ambiguous,1.21,swn prod co,60,FULTON POND,surface_water
+TI-46 BLISS PAD,reuse,,ambiguous,1.19,swn prod co,51.6129032258,016-PUBLIC WATER INTC,interconnection
+11. Seneca Operated Sites,reuse,,ambiguous,1.05,swn prod co,58.8235294118,SENECA RES CORP MARSH CREEK INTC,interconnection
+6. TI-07 Cupper Pad,reuse,,ambiguous,1.03,swn prod co,50,POND 2 (HOLE 17 WEST COURSE),surface_water
+4. TI-09 Brown Pad,reuse,,ambiguous,0.93,swn prod co,54.5454545455,SPRING 4&5 (ORSON),groundwater
+6. Onsite Treated,reuse,,ambiguous,0.83,eqt chap,60.8695652174,APPALACHIA WATER SVCS TREATED EFFLUENT INTC,interconnection
+TI-09 Brown Pad,reuse,,ambiguous,0.82,swn prod co,51.8518518519,POND 9 LOWER,surface_water
+RU-55 CONKLIN PAD,reuse,,ambiguous,0.73,swn prod co,55.1724137931,COOLING PUMP,surface_water
+LU-05 LOCH PAD,reuse,,ambiguous,0.73,swn prod co,55.1724137931,MULCH YARD WELL,groundwater
+4. Alta Operated Sites,reuse,,ambiguous,0.72,swn prod co,55.5555555556,RV SITES WELL,groundwater
+8. JKLM Operated Sites,reuse,,ambiguous,0.68,swn prod co,55.5555555556,RV SITES WELL,groundwater
+3. Various PGE Pads,reuse,,ambiguous,0.58,pa gen energy co,55.8139534884,WI BLDG 30 APPAREL WAREHOUSE INTC,interconnection
+CHK Mcdonough Pad,reuse,,ambiguous,0.54,chesapeake appalachia,60.6060606061,CONESTOGA CK DIV,surface_water
+CHK Kipar Pad,reuse,,ambiguous,0.49,chesapeake appalachia,58.3333333333,SKIPPACK CR,surface_water
+CHK Johnson Pad,reuse,,ambiguous,0.44,chesapeake appalachia,72.2222222222,PLANT 1 JOHNSON CREEK,surface_water
+NR-02 ENDLESS MOUNTAIN RECREATION PAD,reuse,,ambiguous,0.38,swn prod co,76.1904761905,1049 MOUNTAIN,groundwater
+CHK Bim Pad,reuse,,ambiguous,0.36,chesapeake appalachia,61.5384615385,BIG SANDY CREEK,surface_water
+Freshwater Trannsfer from Smith R Pad 4,reuse,,ambiguous,0.32,coterra energy,62.5,SMITH CREEK,surface_water
+Freshwater pad transfer from Abbott D P2 and Carpenetti R P1*,reuse,,ambiguous,0.32,coterra energy,76.1904761905,MINE TRANSFER,groundwater
+Freshwater Pad Transfer from Burke G P1*,reuse,,ambiguous,0.22,coterra energy,76.1904761905,MINE TRANSFER,groundwater
+TI-04 LEPLEY PAD,reuse,,ambiguous,0.21,swn prod co,51.8518518519,LEAPLEY RUN,surface_water
+Various Chief/Rockdale Pads,reuse,,ambiguous,0.2,pa gen energy co,61.2244897959,ROCKDALE MARCELLUS LLC INTC,interconnection
+TI-07 CUPPER PAD,reuse,,ambiguous,0.16,swn prod co,51.4285714286,PA AMER WATER INTC 35371,interconnection
+Various Rockdale/Chief Pads,reuse,,ambiguous,0.15,pa gen energy co,61.2244897959,ROCKDALE MARCELLUS LLC INTC,interconnection
+RU-42 KROPFF PAD,reuse,,ambiguous,0.14,swn prod co,51.4285714286,PA AMER WATER INTC 35412,interconnection
+CHK Rylee Pad,reuse,,ambiguous,0.13,chesapeake appalachia,60,HARE CK,surface_water
+5. TI-07 Cupper Pad,reuse,,ambiguous,0.13,swn prod co,50,NUMBER 15 STORAGE POND,surface_water
+BKV Containment Water (Various Pads),reuse,,ambiguous,0.11,bkv opr,66.6666666667,RAIN WATER,surface_water
+CHK Brewer Pad,reuse,,ambiguous,0.1,chesapeake appalachia,66.6666666667,BEAVER CK DIV,surface_water
+CHK Porter Pad,reuse,,ambiguous,0.1,chesapeake appalachia,61.5384615385,TRIB PARK CK,surface_water
+6. TI-04 Lepley Pad,reuse,,ambiguous,0.09,swn prod co,51.2820512821,LIVERPOOL WP 2 POND 2,groundwater
+TI-04 Lepley Pad,reuse,,ambiguous,0.08,swn prod co,51.8518518519,LEAPLEY RUN,surface_water
+CHK Dunny Pad,reuse,,ambiguous,0.06,chesapeake appalachia,63.6363636364,DUNBAR CK,surface_water
+CHK Cappucci/EDF Pad,reuse,,ambiguous,0.06,chesapeake appalachia,54.5454545455,PONDS A C D F,surface_water
+Chief Raimo Pad,reuse,,ambiguous,0.05,pa gen energy co,68.75,CHIEF OIL AND GAS INTC,interconnection
+"5. RU-64 Boman Pad - 14,280, RU-60 Herman Pad - 21,840",reuse,,ambiguous,0.04,swn prod co,66.6666666667,W 21,groundwater
+4. Various Other Operators Pads,reuse,,ambiguous,0.03,pa gen energy co,52.4590163934,PA AMER WATER CO CANTON MTR VLT SOURCE 147 INTC,interconnection
+LU-09 Good West Pad,reuse,,ambiguous,0.03,swn prod co,61.5384615385,WEST WELL,groundwater
+CHK Tinna Pad,reuse,,ambiguous,0.03,chesapeake appalachia,64,TRIB PARK CK,surface_water
+"LU-05 Loch Pad (9,240 gals) & LU-08 Good Pad (25,200 gals)",reuse,,ambiguous,0.03,swn prod co,57.1428571429,RW-25,groundwater
+CHK Hope Pad,reuse,,ambiguous,0.02,chesapeake appalachia,61.5384615385,POND - 15TH HOLE,surface_water
+Freshwater pad transfer from Adams J P1*,reuse,,ambiguous,0.02,coterra energy,76.1904761905,MINE TRANSFER,groundwater
+CHK Hooker Pad,reuse,,ambiguous,0.02,chesapeake appalachia,59.2592592593,CROOKED CREEK,surface_water
+"4. RU-13 Tonya East Pad - 4,620, RU-31 Scott Pad 4,620",reuse,,ambiguous,0.01,swn prod co,61.5384615385,EAST POND,surface_water
+Freshwater pad transfer from Adams JP1*,reuse,,ambiguous,0.01,coterra energy,76.1904761905,MINE TRANSFER,groundwater
+CHK Grippo Pad,reuse,,ambiguous,0.01,chesapeake appalachia,52.1739130435,OHIO POND,surface_water
+CHK Cuthbertson Pad,reuse,,ambiguous,0.01,chesapeake appalachia,56.25,BERN TWP AUTH INTC,interconnection
+CHK Bim Bra Pad,reuse,,ambiguous,0.01,chesapeake appalachia,58.064516129,E BR ANTIETAM CK,surface_water
+CHK Elevation Pad,reuse,,ambiguous,0.01,chesapeake appalachia,60.6060606061,AQUA PA EMLENTON INTC,interconnection
+CHK TGS Holdings Pad,reuse,,ambiguous,0.01,chesapeake appalachia,54.5454545455,MAHONING CREEK ( PERRY TWP),surface_water
+CHK Yost Pad,reuse,,ambiguous,0,chesapeake appalachia,58.3333333333,TRIB PARK CK,surface_water
+6. WY-09 Otten Pad,reuse,,ambiguous,0,swn prod co,52.9411764706,RW 209 PGW BORDER,groundwater
+CHK Jack Pad,reuse,,ambiguous,0,chesapeake appalachia,63.6363636364,JACKS POND,surface_water
+CHK EDF Pad,reuse,,ambiguous,0,chesapeake appalachia,58.3333333333,LIZARD CK DIV,surface_water
+CHK Franclaire Pad,reuse,,ambiguous,0,chesapeake appalachia,54.5454545455,LITTLE SANDY CK,surface_water
+CHK Sivers Pad,reuse,,ambiguous,0,chesapeake appalachia,64,CHEAT RIVER,surface_water
+CHK Mowry Pad,reuse,,ambiguous,0,chesapeake appalachia,56,POND 9 LOWER,surface_water
+CHK Ramblinrose Pad,reuse,,ambiguous,0,chesapeake appalachia,54.5454545455,SWN PROD CO ROBINSON FORK INTC,interconnection
+CHK Cannella Pad,reuse,,ambiguous,0,chesapeake appalachia,51.8518518519,CANOE CREEK,surface_water
+CHK Allen Pad,reuse,,ambiguous,0,chesapeake appalachia,60.8695652174,LYNCH POND,surface_water
+HINKLE-SWN NR-23 FOUR BUCKS AST,reuse,,ambiguous,33.44,swn prod co,57.1428571429,RW-23,groundwater
+HINKIE EXTRACTION,reuse,,ambiguous,18.71,swn prod co,74.0740740741,LTP EXTRACTION WELL,groundwater
+Frac,reuse,,ambiguous,5.58,eqt chap,54.5454545455,SURFACE,surface_water
+Alta,reuse,,ambiguous,3.84,rockdale marcellus,50,LAKE,surface_water
+RES-Butler,reuse,,ambiguous,2.93,xto energy,75,PA AMER WATER CO BUTLER (JEFFERSON TWP) INTC,interconnection
+KING NORTH NR-01,reuse,,ambiguous,2.74,swn prod co,66.6666666667,NORTH WELL,groundwater
+LWI (Costello) / Bennett,reuse,,ambiguous,2.7,inflection energy,59.0909090909,LOYALSOCK CREEK(COSTELLO),surface_water
+PPG,reuse,,ambiguous,2.39,inr opr,44.4444444444,SPRING,surface_water
+PGE,reuse,,ambiguous,2.32,rockdale marcellus,46.1538461538,PORTAGE CR,surface_water
+HINKLE- SWN NR-23 FOUR BUCKS AST,reuse,,ambiguous,2.26,swn prod co,57.1428571429,RW-23,groundwater
+Fox's Water Srvc - Whitney Drive,reuse,,ambiguous,1.5,pennenergy resources,70,S & G PIT WATER,groundwater
+EPT Percision Pipeline,reuse,,ambiguous,1.24,pa gen energy co,59.0909090909,QUARRY RETURN PIPELINE,surface_water
+Impacted Water from C2G - Shaskas South (WMGR123NE003),reuse,,ambiguous,0.92,bkv opr,66.6666666667,RAIN WATER,surface_water
+"RALSTON - 962,220 gals",reuse,,ambiguous,0.78,swn prod co,52.6315789474,091-GRAYSTONE WELL,groundwater
+"C2G Energy Solutions, LLC",reuse,,ambiguous,0.66,swn prod co,70.2702702703,KEYSTONE CLEARWATER SOLUTIONS LLC MOSHANNON CK INTC,interconnection
+"C2G ENERGY SOLUTIONS, LLC",reuse,,ambiguous,0.66,swn prod co,70.2702702703,KEYSTONE CLEARWATER SOLUTIONS LLC MOSHANNON CK INTC,interconnection
+5. Frac Water,reuse,,ambiguous,0.6,eqt chap,73.6842105263,NORTH PENN WATER AUTH INTC 5,interconnection
+4. Frac,reuse,,ambiguous,0.58,eqt chap,60,RW-4,groundwater
+Rockdale Operated Sites,reuse,,ambiguous,0.44,swn prod co,55.8139534884,CROOKED CREEK SITE 2,surface_water
+STL RESOURCES OPERATED SITES,reuse,,ambiguous,0.39,swn prod co,75,RANGE RESOURCES INTC,interconnection
+Prager B 3H - API 37-019-226890,reuse,,ambiguous,0.29,xto energy,46.875,PHILADELPHIA WATER AUTH MTR 9421269 INTC,interconnection
+Prager A 1H - API 37-019-226870,reuse,,ambiguous,0.29,xto energy,49.0566037736,PA AMER WATER INTC 2413927902,interconnection
+5. ALTA OPERATED SITES,reuse,,ambiguous,0.25,swn prod co,55.5555555556,RV SITES WELL,groundwater
+Rockdale Wells,reuse,,ambiguous,0.23,rockdale marcellus,72.7272727273,ROCKDALE MARCELLUS LLC LYCOMING CREEK INTC,interconnection
+Beech Resources Operated Sites,reuse,,ambiguous,0.23,swn prod co,75,RANGE RESOURCES INTC,interconnection
+Lesney Unit 5H-37-019-22697-00-00,reuse,,ambiguous,0.22,xto energy,50,SRC 5H,groundwater
+Gas Field Specialists,reuse,,ambiguous,0.21,rockdale marcellus,60,SUSQUEHANNA GAS FIELD SVCS MESHOPPEN CREEK(SWIFT MART) INTC,interconnection
+Winslow 5H - API 37-065-27079,reuse,,ambiguous,0.16,xto energy,50,SRC 5H,groundwater
+7. JKLM OPERATED SITES,reuse,,ambiguous,0.16,swn prod co,55.5555555556,RV SITES WELL,groundwater
+10. Rockdale Operated Sites,reuse,,ambiguous,0.15,swn prod co,57.1428571429,EW-10,groundwater
+DEER PARK MOUNTAIN ENERGY (11/30/2016- 12/3/2016),reuse,,ambiguous,0.15,swn prod co,76.1904761905,1049 MOUNTAIN,groundwater
+6. BEECH RESOURCES OPERATED SITES,reuse,,ambiguous,0.14,swn prod co,75,RANGE RESOURCES INTC,interconnection
+11. HYDRORECOVERY,reuse,,ambiguous,0.14,swn prod co,78.7878787879,HYDRO RECOVERY LP INTC,interconnection
+Winslow 6HU - API 37-065-27080,reuse,,ambiguous,0.13,xto energy,44.4444444444,WELL 37,groundwater
+"Mieka, LLC Schimizzi S&M #1-Source #51",reuse,,ambiguous,0.13,eqt chap,70.3703703704,MIEKA LLC SCHIMIZZI WELL PAD IMPOUNDMENT INTC,interconnection
+Alta Resources Operated Sites,reuse,,ambiguous,0.12,swn prod co,75,RANGE RESOURCES INTC,interconnection
+RANGE OPERATED STIES,reuse,,ambiguous,0.11,swn prod co,62.8571428571,RANGE RESOURCES INTC,interconnection
+C2G Energy Solutions,reuse,,ambiguous,0.11,swn prod co,62.0689655172,KEYSTONE CLEARWATER SOLUTIONS LLC MOSHANNON CK INTC,interconnection
+SWN OPEARTED SITES,reuse,,ambiguous,0.1,swn prod co,58.8235294118,PRESTRESS SPRING,groundwater
+5. Beech Resources Operated Sites,reuse,,ambiguous,0.08,swn prod co,75,RANGE RESOURCES INTC,interconnection
+AK Steel A 1H-37-019-22645-00-00,reuse,,ambiguous,0.08,xto energy,54.9019607843,"WELLS 3-8, 10-13, AND 16",groundwater
+AK Steel A 2H-37-019-22646-00-00,reuse,,ambiguous,0.08,xto energy,50.9803921569,"WELLS 3-8, 10-13, AND 16",groundwater
+4. AK Steel A 2H-37-019-22646-00-00,reuse,,ambiguous,0.08,xto energy,49.0566037736,"WELLS 3-8, 10-13, AND 16",groundwater
+3. AK Steel A 1H-37-019-22645-00-00,reuse,,ambiguous,0.08,xto energy,52.8301886792,"WELLS 3-8, 10-13, AND 16",groundwater
+PGE Wastewater (Various),reuse,,ambiguous,0.07,pa gen energy co,65,WASTE WATER RUNOFF,surface_water
+Winslow 5H-API 37-065-27079,reuse,,ambiguous,0.06,xto energy,50,SRC 5H,groundwater
+STL Resources Operated Sites,reuse,,ambiguous,0.05,swn prod co,75,RANGE RESOURCES INTC,interconnection
+Eureka Resources,reuse,,ambiguous,0.05,coterra energy,72,ADLIB RESOURCES INC MESHOPPEN CREEK INTC,interconnection
+WSDEER PARK MTN. ENERGY,reuse,,ambiguous,0.04,swn prod co,72.7272727273,PARK CR,surface_water
+Winslow 2H - API 37-065-26992,reuse,,ambiguous,0.04,xto energy,45,WELL CH3:1-05,groundwater
+ECLIPSE RESOURCES OPERATED SITES,reuse,,ambiguous,0.04,swn prod co,75,RANGE RESOURCES INTC,interconnection
+Winslow 6HU Rework,reuse,,ambiguous,0.04,xto energy,57.1428571429,WICONISCO CREEK 3,surface_water
+6. C2G Energy Solutions,reuse,,ambiguous,0.04,swn prod co,58.3333333333,HG ENERGY II ROBINSON FORK INTC,interconnection
+Wright W P1,reuse,,ambiguous,0.03,coterra energy,57.1428571429,WET WELL 1,groundwater
+Eclipse Resources Operated Sites,reuse,,ambiguous,0.03,swn prod co,75,RANGE RESOURCES INTC,interconnection
+12. STL Resources Operated Sites,reuse,,ambiguous,0.02,swn prod co,75,RANGE RESOURCES INTC,interconnection
+Winslow 3H-API 37-065-26993,reuse,,ambiguous,0.02,xto energy,45,WELL HR-3-295,groundwater
+Winslow 3H - API 37-065-26993,reuse,,ambiguous,0.02,xto energy,45,WELL HR-3-295,groundwater
+Winslow 2H-API 37-065-26992,reuse,,ambiguous,0.01,xto energy,45,WELL CH3:1-05,groundwater
+Winslow 1H-API-37-065-26972,reuse,,ambiguous,0.01,xto energy,48.9795918367,"WELLS 3-8, 10-13, AND 16",groundwater
+Abbott D P1,reuse,,ambiguous,0.01,coterra energy,54.5454545455,POND BOTTOM,surface_water
+Bowser 1H - API 37-037-25484,reuse,,ambiguous,0.01,xto energy,48.8888888889,PA AMER WATER INTC 35371,interconnection
+8. STL RESOURCES OPERATED SITES,reuse,,ambiguous,0.01,swn prod co,75,RANGE RESOURCES INTC,interconnection
+Mead B P1 transfer,reuse,,ambiguous,0.01,coterra energy,76.1904761905,MINE TRANSFER,groundwater
+P&G 3,reuse,,ambiguous,0.01,bkv opr,66.6666666667,PW-3,groundwater
+Jeffers Farms P5,reuse,,ambiguous,0.01,repsol oil & gas usa,56.25,JALENE FARM WELL,groundwater
+Howell G P1,reuse,,ambiguous,0.01,coterra energy,77.7777777778,WELL P1,groundwater
+Adams J P1 transfer,reuse,,ambiguous,0,coterra energy,76.1904761905,MINE TRANSFER,groundwater
+EUREKA RESOURCES,reuse,,ambiguous,0,inflection energy,72,SENECA RESOURCES LOYALSOCK CREEK (COSTELLO) INTC,interconnection
+Transfer from Tsourous A P1,reuse,,ambiguous,0,coterra energy,76.1904761905,MINE TRANSFER,groundwater
+Trecoske North,reuse,,ambiguous,0,bkv opr,66.6666666667,NORTH SEEP,groundwater
+Winslow 6HU,reuse,,ambiguous,0,xto energy,77.7777777778,LITTLE SANDY CREEK - WINSLOW,surface_water
+Trecoske South,reuse,,ambiguous,0,bkv opr,66.6666666667,SOUTH FORK CROSS CREEK,surface_water
+Dreher A 5H - API 37-019-221470,reuse,,ambiguous,0,xto energy,50,"PONDS 3,5,12, AND 13",surface_water
+Dreher B 4H – API 37-019-221770,reuse,,ambiguous,0,xto energy,46.1538461538,019-2 WELL,groundwater
+Dreher B 5H - API 37-019-221780,reuse,,ambiguous,0,xto energy,50,SRC 5H,groundwater
+Chesapeake Operated Sites,reuse,,ambiguous,0,swn prod co,64.5161290323,CHESAPEAKE APPALACHIA INTC,interconnection
+Adams P1 transfer,reuse,,ambiguous,0,coterra energy,76.1904761905,MINE TRANSFER,groundwater
+King D P1,reuse,,ambiguous,0,coterra energy,61.5384615385,KING GAP WELL,groundwater
+Jones B Unit 2H - API 37-063-37500,reuse,,ambiguous,0,xto energy,47.0588235294,"PONDS 3,5,12, AND 13",surface_water
+Jones A Unit 1H - API 37-063-37474,reuse,,ambiguous,0,xto energy,47.0588235294,"PONDS 3,5,12, AND 13",surface_water
+Anderson R P1,reuse,,ambiguous,0,coterra energy,76.1904761905,ANDERSON CREEK,surface_water
+Halliday A P1,reuse,,ambiguous,0,coterra energy,56,AL'S HAULING,surface_water
+5. Winslow 5H - API 37-065-27079,reuse,,ambiguous,0,xto energy,50,SRC 5H,groundwater
+P&G 5,reuse,,ambiguous,0,bkv opr,66.6666666667,PW-5,groundwater
+P&G 4,reuse,,ambiguous,0,bkv opr,66.6666666667,PW-4,groundwater
+Prager A Unit 1H-37-019-22687-00-00,reuse,,ambiguous,0,xto energy,46.1538461538,019-2 WELL,groundwater
+Prager B Unit 3H-37-019-22689-00-00,reuse,,ambiguous,0,xto energy,47.4576271186,DERRY BORO MUNI AUTH RT 982 INTC,interconnection
+4. Winslow 2H - API 37-065-26992,reuse,,ambiguous,0,xto energy,45.4545454545,"WELLS 4, 5 AND 6",groundwater
+5. ECLIPSE RESOURCES OPERATED SITES,reuse,,ambiguous,0,swn prod co,75,RANGE RESOURCES INTC,interconnection
+"C2G Energy Solutions, LLC Operated sites",reuse,,ambiguous,0.06,swn prod co,68.9655172414,JKLM ENERGY LLC PIT INTC,interconnection
+Mt. Energy Deer Park [5RBC Docket Number 20140606],reuse,,ambiguous,0.02,coterra energy,72.7272727273,PARK CR,surface_water
+6. Winslow 6HU - API 37-065-27080,reuse,,ambiguous,0,xto energy,44.4444444444,WELL 37,groundwater
+W44,reuse,,ambiguous,0,pennenergy resources,57.1428571429,PW14,groundwater
+Colwell SWW,surface_water,,dont_know,117.28,swn prod co,72.7272727273,WELL,surface_water
+Arnot SWW,surface_water,,dont_know,55.62,seneca resources co,61.5384615385,TROUT RN,surface_water
+Forskville SWW,surface_water,,dont_know,48.78,chesapeake appalachia,54.5454545455,VILLAGE POND,surface_water
+Heironimus,surface_water,,ambiguous,45.98,eqt prod co,55.5555555556,IRON RUN,surface_water
+Mama Bear P1,surface_water,,ambiguous,45.92,eqt prod co,57.1428571429,BEAR CREEK,surface_water
+Brown SWW,surface_water,,dont_know,31.14,chesapeake appalachia,58.8235294118,BROWNS CREEK,surface_water
+KGS (Yough @ Smithton) - Source 70,surface_water,,ambiguous,21.97,eqt chap,55.5555555556,YOUGH RIV DIV,surface_water
+Mehopany SWW,surface_water,,dont_know,5.27,chesapeake appalachia,52.1739130435,MESHOPPEN CREEK,surface_water
+Keystone Lycoming SWW,surface_water,,dont_know,2.28,seneca resources co,72.7272727273,LYCOMING CREEK,surface_water
+Huff SWW (by Anadarko in 2013),surface_water,,dont_know,0.01,eqt aro,51.1627906977,LYCOMING CREEK -HUFF,surface_water
+Powhattan Point OH,surface_water,,ambiguous,0.01,cnx gas co,51.8518518519,OHIO POND,surface_water
+Powhattan Point Ohio,surface_water,,ambiguous,0,cnx gas co,61.5384615385,OHIO POND,surface_water
+4. Powhattan Point OH,surface_water,,ambiguous,0,cnx gas co,53.3333333333,POND ON 14,surface_water
+5. Powhattan Point Ohio,surface_water,,ambiguous,0,cnx gas co,61.5384615385,OHIO POND,surface_water
+Isbell Take Point,surface_water,,ambiguous,13.04,blackhill energy,66.6666666667,ISABELLE LAKE,surface_water
+Rockdale Fresh,surface_water,,ambiguous,11.25,rockdale marcellus,72.7272727273,ROCKDALE MARCELLUS LLC LYCOMING CREEK INTC,interconnection
+Ten Mile - Cogar,surface_water,,ambiguous,5.51,eqt prod co,72.7272727273,UPPER TEN MILE CREEK,surface_water
+"WPX Hallstead, Susquehannna [SRBC Oocket Number 20130613]",surface_water,,ambiguous,3.38,coterra energy,62.3655913978,SWN PROD CO SUSQUEHANNA RIVER @ HALLSTEAD INTC,interconnection
+Wysox Take Point,surface_water,,ambiguous,3.26,blackhill energy,58.064516129,RESEVOIR INTAKE,surface_water
+Healthy Properites Take Point,surface_water,,ambiguous,3.24,blackhill energy,69.8412698413,HEALTHY PROPERTIES INC SUGAR CREEK INTC,interconnection
+Susquehanna #2 (Susquehanna Depot] [5RBC Docket Number 20120903],surface_water,,ambiguous,0.39,coterra energy,77.5510204082,SUSQUEHANNA RIVER-2 (SUSQ. DEPOT),surface_water
+Westfield Bailey Water Draw,surface_water,,ambiguous,0.29,swepi,75,BAILEY SW4,surface_water
+ODELL,,,ambiguous,21.08,swn prod co,76.9230769231,WELL OLD,groundwater
+FRS,,,ambiguous,15.49,coterra energy,66.6666666667,RES,surface_water
+EASTERN REAGION WMP #269846-04 MESSHOPPEN CROOK,,,ambiguous,9.51,carrizo,57.1428571429,MESHOPPEN CREEK (BROOKS) @ SPRINGVILLE TWP,surface_water
+LDG Water Draw,,,ambiguous,8.61,swepi,68.75,DELAWARE WATER GAP,interconnection
+STUNNER / SMITH,,,ambiguous,8.43,inflection energy,62.5,SMITH CREEK,surface_water
+RES Butler,,,ambiguous,8.15,xto energy,75,PA AMER WATER CO BUTLER (JEFFERSON TWP) INTC,interconnection
+YOUNG EXTRACTION,,,ambiguous,7.75,swn prod co,76.9230769231,LTP EXTRACTION WELL,groundwater
+Laurel Mountain,,,ambiguous,7.17,inr opr,78.7878787879,BLUE MOUNTAIN WELL,groundwater
+Limbach Lane,,,ambiguous,7,pennenergy resources,63.6363636364,LAKE WILMA,surface_water
+Shell,,,ambiguous,6.5,rockdale marcellus,72.7272727273,WELL H,groundwater
+WB-3,,,ambiguous,6.45,eqt aro,75,PW-3,groundwater
+Fox Whitney Drive,,,ambiguous,5,pennenergy resources,78.5714285714,PA AMER BUTLER DIST FOX-WHITNEY DR INTC SOURCE 4,interconnection
+Greylock Genesee Forks (SRBC 20240311),,,ambiguous,4.71,greylock prod,78.7878787879,GENESEE FORKS - NAUMAN,surface_water
+B&B INVESTMENT GRP,,,ambiguous,4.25,chesapeake appalachia,56.25,GREENWALTZ B-2,groundwater
+Montoursville Borough,,,ambiguous,4.09,inflection energy,76.4705882353,MONTOURSVILLE BORO WATER WORKS INTC,interconnection
+SRC5H,,,ambiguous,2.38,seneca resources co,54.5454545455,SRC 5H,groundwater
+4. WB-3,,,ambiguous,2.27,eqt aro,66.6666666667,RW-134,groundwater
+2. RES Mt. Pleasant,,,ambiguous,2.01,olympus energy,78.5714285714,WESTMORELAND CNTY MUNI AUTH (MT PLEASANT TWP) INTC,interconnection
+Principle,,,ambiguous,2,rockdale marcellus,63.1578947368,DRAIN TILE,surface_water
+TLC,,,ambiguous,1.72,inflection energy,50,PW-LC,groundwater
+Forwarded,,,ambiguous,1.3,eqt chap,54.5454545455,LAURELLY FORK,surface_water
+C2G SHASKAS,,,ambiguous,1.22,swn prod co,55.5555555556,2 LAKES,surface_water
+HR-/BMA,,,ambiguous,1.21,seneca resources co,71.4285714286,HFR BARN,groundwater
+Healthy Propeties,,,ambiguous,1.07,blackhill energy,66.6666666667,HEALTHY PROPERTIES INC SUGAR CREEK INTC,interconnection
+STUNNER/SMITH,,,ambiguous,1.05,inflection energy,62.5,SMITH CREEK,surface_water
+Nuverra,,,ambiguous,1.04,rockdale marcellus,57.1428571429,CONVERTER EAST,groundwater
+Precipitation,,,ambiguous,0.84,pa gen energy co,56.25,SEDIMENTATION PONDS,surface_water
+EICHENLAUB,,,ambiguous,0.79,inflection energy,54.5454545455,ESHELMAN RUN,surface_water
+WB Linden (by Anadarko in 2013),,,ambiguous,0.78,eqt aro,72.7272727273,ANADARKO EP CO INTC,interconnection
+Bodines Extraction,,,ambiguous,0.66,swn prod co,71.4285714286,LTP EXTRACTION WELL,groundwater
+Heckmann,,,ambiguous,0.66,rockdale marcellus,60,ESHELMAN RUN,surface_water
+KSE,,,ambiguous,0.64,rockdale marcellus,57.1428571429,LAKE,surface_water
+3. Canton (~5%),,,ambiguous,0.63,chief oil & gas,75,CANTON BORO AUTH SULLIVAN ST BULK LOADING STATION INTC,interconnection
+REITZ,,,ambiguous,0.62,inflection energy,62.5,SNITZ CREEK,surface_water
+Puderbaugh,,,ambiguous,0.62,rockdale marcellus,57.1428571429,HOTTENBAUGH,surface_water
+12. C2G SHASKAS,,,ambiguous,0.61,swn prod co,57.1428571429,PW-12,groundwater
+10. Canton (~2.5%),,,ambiguous,0.59,chief oil & gas,76.1904761905,CANTON BORO AUTH INTC 2,interconnection
+4. Canton (~5%),,,ambiguous,0.56,chief oil & gas,75,CANTON BORO AUTH SULLIVAN ST BULK LOADING STATION INTC,interconnection
+FLT - Source 18,,,ambiguous,0.48,eqt chap,46.1538461538,FALL TEE 9,groundwater
+RU-22 TNT LIMITED PARTNERSHIP EAST,,,ambiguous,0.48,swn prod co,61.5384615385,EAST POND,surface_water
+All State,,,ambiguous,0.46,rockdale marcellus,71.4285714286,PENN STATE EFFLUENT,surface_water
+Stallion,,,ambiguous,0.46,rockdale marcellus,58.8235294118,STAR WELL,groundwater
+Evolution,,,ambiguous,0.39,rockdale marcellus,53.8461538462,EQT PRODUCTION CO INTC,interconnection
+Moore,,,ambiguous,0.34,rockdale marcellus,57.1428571429,MON RIVER,surface_water
+5. Forwarded,,,ambiguous,0.18,eqt chap,64,WELL-ORCHARD 5,groundwater
+Patrik's,,,ambiguous,0.15,rockdale marcellus,57.1428571429,S & G PIT WATER,groundwater
+Canton Borough,,,ambiguous,0.14,chesapeake appalachia,73.3333333333,CANTON BORO AUTH INTC,interconnection
+SWEPI CUMMINGS WWD,,,ambiguous,0.12,clean energy exploration & production,76.9230769231,SWEPI LP INTC,interconnection
+SWEPI Cummings WWD,,,ambiguous,0.12,clean energy exploration & production,76.9230769231,SWEPI LP INTC,interconnection
+ACV Enviro,,,ambiguous,0.11,rockdale marcellus,52.1739130435,RESERVOIR DIV,surface_water
+Deljanovan,,,ambiguous,0.1,rockdale marcellus,48,JANE EMILIE AMD,groundwater
+16. Westfield Bailey Water Draw,,,ambiguous,0.1,swepi,75,BAILEY SW4,surface_water
+Shaskas Site - C2G,,,ambiguous,0.09,swn prod co,56.25,SHAMOKIN CR WITH,surface_water
+First American,,,ambiguous,0.09,rockdale marcellus,72.7272727273,PA AMERICAN BUTLER INTC,interconnection
+4. Canton (~1%),,,ambiguous,0.08,chief oil & gas,75,CANTON BORO AUTH SULLIVAN ST BULK LOADING STATION INTC,interconnection
+TI-07 CUPPER,,,ambiguous,0.08,swn prod co,58.3333333333,UPPER WELL 1,groundwater
+LEPLEY AST,,,ambiguous,0.06,swn prod co,63.1578947368,EAST WELL,groundwater
+H2O Express,,,ambiguous,0.05,rockdale marcellus,52.1739130435,PROCESS WELL,groundwater
+Shaskas,,,ambiguous,0.04,coterra energy,50,LAKES,surface_water
+3. LEPLEY AST,,,ambiguous,0.02,swn prod co,62.0689655172,EAST FIELD WELL 3,groundwater
+SHELL,,,ambiguous,0.02,clean energy exploration & production,72.7272727273,WELL H,groundwater
+McConnell,,,ambiguous,0.02,bkv opr,63.1578947368,MASON WELL,groundwater
+Pelton,,,ambiguous,0.01,rockdale marcellus,66.6666666667,STEELTON PIT,groundwater
+Voll,,,ambiguous,0.01,pennenergy resources,54.5454545455,RO WELL,groundwater
+Fritsch Farm,,,ambiguous,0.01,pennenergy resources,61.5384615385,HALL FARM,surface_water
+Forwardd Freshwater,,,ambiguous,0.01,eqt chap,68.9655172414,HIERONIMUS#2 FRESHWATER IMPOUNDMENT,surface_water
+Edkin Hill precipitation,,,ambiguous,0.01,exco resources pa,54.1666666667,BRIER HILL MINE INTAKE 1,groundwater
+Renick,,,ambiguous,0.01,pennenergy resources,53.3333333333,DIKEN INC,groundwater
+Forwarded Freshwater,,,ambiguous,0.01,eqt chap,66.6666666667,HIERONIMUS#2 FRESHWATER IMPOUNDMENT,surface_water
+Giangrieco,,,ambiguous,0,bkv opr,50,WI GARAGE INTC,interconnection
+HILLEGAS PROPERTY (775481),,,ambiguous,0,inflection energy,57.1428571429,HOWARD PROPERTY POND,surface_water
+Frystak,,,ambiguous,0,bkv opr,63.1578947368,CRYSTAL LAKE,surface_water
+ULTIMATE WARRIOR (752596),,,ambiguous,0,inflection energy,50,ERIE WATER AUTH INTC 2,interconnection
+Argo,,,ambiguous,0,em energy pa,60,WI GARAGE INTC,interconnection
+Mazzara,,,ambiguous,0,bkv opr,46.1538461538,WI GARAGE INTC,interconnection
+Kile,,,ambiguous,0,bkv opr,61.5384615385,KILN WELL,groundwater
+Mattocks,,,ambiguous,0,bkv opr,52.1739130435,MATTOS SPRING 1,surface_water
+Mirabelli,,,ambiguous,0,bkv opr,60,MURRAY WELL,groundwater
+6. Forwarded,,,ambiguous,0,eqt chap,56,WELL-ORCHARD 5,groundwater
+COSTELLO PROPERTY (781014),,,ambiguous,0,inflection energy,57.1428571429,HOWARD PROPERTY POND,surface_water
+Plushanski,,,ambiguous,0,bkv opr,48.275862069,PINE CREEK - WELSHANS,surface_water
+Ricci,,,ambiguous,0,bkv opr,44.4444444444,LICKING CREEK,surface_water
+Ruark East,,,ambiguous,0,bkv opr,76.1904761905,EAST QUARRY,groundwater
+Blaisure Jean P1,,,ambiguous,0,coterra energy,56,BLUE/EAST,groundwater
+See attached,,,ambiguous,0,chesapeake appalachia,58.064516129,BARRETT DEEP (CAPPED),groundwater
+See original Completion Report Submitted on 11/07/2024 for details,,,ambiguous,0,coterra energy,57.1428571429,PW-11,groundwater
+--,,,ambiguous,0,range resources appalachia,0,BUFFALO CREEK @ FORNEY,surface_water
+Yarasavage,,,ambiguous,0,bkv opr,62.5,WI GARAGE INTC,interconnection

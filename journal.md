@@ -260,3 +260,96 @@ New notebook with nine sections:
 - `dont_know` (11% vol): SWW, WI-suffix entries may be classifiable as interconnection
 - `ambiguous` (4% vol, ~626 unique strings): rule review needed
 - Fair/low NHD matches (score 60-79): some fixable with targeted normalization
+
+---
+
+## 2026-04-22 — Session 3
+
+### Step 14 — PA DEP water resource matching (`dep_matcher.ipynb`)
+
+Goal: resolve `dont_know` (10.9% vol) and `ambiguous` (4.2% vol) planSources using PA DEP
+water resource point data.
+
+**DEP data:** `data/PA resources/WaterResources2026_01.geojson` — 24,037 water withdrawal
+points (surface water, groundwater, interconnection), EPSG:3857 reprojected to WGS84.
+Fields: `SUB_FACILI` (source name), `ORGANIZATI` (operator), `ACTIVITY` (withdrawal type).
+
+**Name normalization:**
+- `normalize()`: lowercase, strip punctuation, expand common abbreviations
+- `norm_operator()`: strip legal suffixes (LLC, Inc, LP, etc.) for fuzzy operator matching
+- `extract_key_name()`: strips type-prefix acronyms (SWW, WI, SPWA, Aqua, MAWC) to isolate
+  a bare location qualifier — the term that actually appears in the DEP source name
+
+**Scoring:** `max(token_set_ratio(key_name, dep_name), token_sort_ratio(full_name, dep_name))`
+using rapidfuzz. `token_set_ratio` was critical: DEP names embed the location qualifier
+inside a longer string (e.g. `"SALSMAN"` inside `"SUSQUEHANNA RIVER - SALSMAN FARM"`),
+which `token_sort_ratio` alone would score poorly. Using `token_set_ratio` on the extracted
+key term fixed scores from ~44 to 100 for these cases.
+
+**Two-pass matching strategy:**
+1. **Operator pass**: filter DEP pool to entries with matching operator name, score ≥ 70
+2. **Global fallback**: for utility-operated sources (SWPA Water Authority, Aqua Infrastructure,
+   MAWC, etc.), try full DEP pool — local operator name rarely appears in DEP records
+
+`get_type_hint()` maps dont_know patterns (SWW → surface/interconnection, WI → interconnection,
+Aqua → surface/interconnection, brine → excluded) to restrict the DEP pool to compatible types.
+
+**Results — dont_know + ambiguous (1,030 sources):**
+- Score ≥ 80: strong majority of dont_know sources resolved with correct type and coordinates
+
+**Extension to all sources:** Reran matching against all 3,506 source candidates (excluding
+reuse and no_source) to validate existing classifications and add DEP coordinates. Saved to
+`data/dep_match_results_all.parquet` (3,506 rows).
+
+### Step 15 — Apply DEP matches to junction table
+
+Built application cell (saved to `data/junction_dep_updated.parquet`):
+- Join `dep_match_results_all` → junction on `planSource`
+- New columns added: `dep_score`, `dep_type`, `dep_stype`, `dep_lat`, `dep_lon`, `dep_src`
+- Reclassify `dont_know`/`ambiguous` rows where `dep_score ≥ 80`
+- **Brine override**: unconditional — any planSource containing `\bbrine\b` forced to `reuse`
+  regardless of DEP match (DEP matched "Brine Water" → "RAIN WATER" at score 86 → wrong type)
+
+**DEP coordinate coverage:** 57.1% of all junction rows (28,198/49,363) now have DEP-sourced
+coordinates, supplementing the NHD match coordinate data.
+
+### Step 16 — Rule fixes and date-suffix inheritance
+
+Applied a priority-ordered `RULE_FIXES` list for patterns automation cannot resolve reliably:
+- `brine` → `reuse`; quarry/mine/pit → `groundwater`/`impoundment` where appropriate
+- `rainwater`/`rain` → `reuse`
+- SWW / WI patterns → `interconnection` where DEP matching confirmed the type
+- **Date-suffix inheritance**: planSources like `"Newton SWW 20140801"` look up the base
+  source (`"Newton SWW"`) in the already-resolved type dict and inherit its type
+
+### Step 17 — Manual curation tool
+
+For residuals that automation cannot resolve (short codes like "B37", operator-specific
+site names with no DEP record), built a CSV-based curation workflow:
+- Export: 319 residual planSources to `data/manual_curation.csv` with columns:
+  `planSource`, `curated_type`, `notes`, `source_type`, `volume_Mgal`, `operator_clean`,
+  `dep_score`, `dep_src`, `dep_type`
+- User fills `curated_type` in Excel; apply cell re-reads and overrides the parquet
+- Auto-mapping: user used `surface_water` (DEP terminology) → remapped to `surface_direct`
+  (our vocabulary) before applying
+
+**User curated 231 of 319 entries (844.5 Mgal) covering reuse pond networks, impoundments,
+and surface water withdrawals identified by operator knowledge.**
+
+### Final results
+
+**Type distribution (% of total volume):**
+
+| Type | Before | After |
+|---|---|---|
+| surface_direct | 49.1% | 54.4% |
+| interconnection | 15.4% | 21.8% |
+| impoundment | 16.0% | 17.5% |
+| reuse | 2.6% | 3.1% |
+| groundwater | 1.3% | 2.5% |
+| dont_know | 10.9% | 0.0% |
+| ambiguous | 4.2% | 0.2% |
+
+**Residuals:** `dont_know` 0 rows; `ambiguous` 480 rows at 0.2% of total volume — negligible.
+
+Output: `data/junction_dep_updated.parquet` (49,363 rows, junction table with DEP columns).
