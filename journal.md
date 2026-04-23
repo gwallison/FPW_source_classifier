@@ -353,3 +353,52 @@ and surface water withdrawals identified by operator knowledge.**
 **Residuals:** `dont_know` 0 rows; `ambiguous` 480 rows at 0.2% of total volume — negligible.
 
 Output: `data/junction_dep_updated.parquet` (49,363 rows, junction table with DEP columns).
+
+---
+
+## 2026-04-23 — Session 4
+
+### Step 18 — Geolocation coverage audit (`analysis.ipynb`, section 10)
+
+Added new section to `analysis.ipynb` to quantify coordinate availability across all planSources:
+- 98.7% of unique planSources are geolocated (99.2% of volume); only 49 sources (0.8% vol) have no coord
+- By best available coord: DEP 62.9% of sources (76.6% vol), well proxy 32.3% (18.2%), SRBC 2.8% (4.5%), none 1.3% (0.8%)
+- Master table has full coordinates (2,882 rows) but only 123 junction planSources link to it via site_ID — negligible contribution
+
+Identified two re-match opportunities:
+1. **New candidates** (reclassified surface/impoundment from dont_know/ambiguous, never NHD-matched): 1,053 sources, 23,811 Mgal; 801 have precise DEP coords
+2. **Fair/low re-match with DEP coords**: 116 sources, 5,228 Mgal
+
+### Step 19 — NHD Pass 4 (`nhd_matcher.ipynb`, Pass 4 cells; run via `run_pass4.py`)
+
+Built and ran a 4th NHD matching pass targeting the two groups above.
+
+**Search name strategy (in priority order):**
+1. `extract_search_name(planSource)` — primary (same as previous passes)
+2. `extract_search_name(dep_src)` — fallback for reclassified SWW/WI entries (e.g. `dep_src = "SUSQUEHANNA RIVER - SALSMAN"` → extracts "Susquehanna River")
+3. SRBC confirmed source name (for SRBC-tagged sources)
+
+Used combined PA+WV NHD throughout. DEP coordinates used as spatial anchor (actual withdrawal points, more precise than well proxy).
+
+**Results:**
+- 1,169 targets processed; 358 returned a match
+- 293 applied: 221 new sources matched (score ≥ 60), 72 existing fair/low matches improved
+- Score ≥ 90: 234; score ≥ 80: 243
+
+**Volume impact (before → after):**
+
+| Tier | Before (all rows) | After (all rows) | Before (candidates) | After (candidates) |
+|---|---|---|---|---|
+| high (≥90) | 40.5% | **51.4%** | 56.1% | **71.1%** |
+| good (80-89) | 1.1% | **2.5%** | 1.5% | **3.5%** |
+| fair (60-79) | 6.1% | 5.2% | 8.4% | 7.1% |
+| low (<60) | 0.4% | 0.3% | 0.5% | 0.5% |
+| unmatched | 51.9% | **40.6%** | 33.5% | **17.8%** |
+
+High+good for candidates: **74.6%** (was 57.6%).
+
+**Remaining unmatched candidates (12,623 Mgal, 840 sources):**
+Dominated by operator-named impoundments (YOUNG, Parys, ZEFFER, KRAUSE, etc.) where `dep_src = "IMPOUNDMENT"` — no stream name available. These are genuinely un-matchable without manual lookup.
+Notable exceptions: "Northeast Marcellus Aqua Midstream" (421 Mgal) had bad DEP coord and may warrant manual attention.
+
+Output files updated: `data/junction_dep_updated.parquet`, `data/nhd_match_results.parquet`.

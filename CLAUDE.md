@@ -23,6 +23,9 @@ and inconsistent naming. This project pivots to USGS NHD as the reference datase
 | `srbc_docket_info.parquet` | 72 SRBC dockets: approved_source, lat, lon, county, subbasin, approval_type |
 | `srbc_coords_lookup.parquet` | planSource → srbc_lat, srbc_lon, srbc_source_name (397 rows) |
 | `nhd_feature_volume_summary.csv` | Per-NHD-feature withdrawal totals (high/good matches only) |
+| `junction_dep_updated.parquet` | **Canonical output**: full junction table with DEP columns + reclassified types (49,363 rows) |
+| `dep_match_results_all.parquet` | DEP match results for all 3,506 source candidates |
+| `manual_curation.csv` | 319 residual planSources; 231/319 filled by user (844.5 Mgal) |
 
 ## External data
 - **`skinny_df.parquet`** at `G:\My Drive\production\repos\openFF_data_2026_04_03\skinny_df.parquet`
@@ -48,8 +51,13 @@ Also extracts water feature names from SRBC permit strings (e.g.
 `"Cabot, Tunkhannock Creek [SRBC Docket Number 20180605]"` → `"Tunkhannock Creek"`) and
 joins well coordinates from `skinny_df` via `api10`.
 
-Coverage by reported volume: `surface_direct` 49%, `impoundment` 16%, `interconnection` 15%,
-`dont_know` 11%, `ambiguous` 4%, `reuse` 3%, `groundwater` 1%.
+Initial coverage by reported volume (before DEP reclassification): `surface_direct` 49%,
+`impoundment` 16%, `interconnection` 15%, `dont_know` 11%, `ambiguous` 4%, `reuse` 3%,
+`groundwater` 1%.
+
+Final coverage after DEP matching + manual curation (see `dep_matcher.ipynb`):
+`surface_direct` 54%, `interconnection` 22%, `impoundment` 18%, `reuse` 3%, `groundwater` 3%,
+`ambiguous` 0.2%, `dont_know` 0%.
 
 ### `nhd_matcher.ipynb`
 Matches NHD candidate sources (surface_direct + impoundment + srbc_only) to NHD features.
@@ -64,15 +72,11 @@ Steps:
 
 Results saved to `data/nhd_match_results.parquet`.
 
-Three matching passes run (see Session 2 in journal for detail):
+Four matching passes (see journal for detail):
 1. **Main pass** — PA NHD only, well-proxy coords
-2. **SRBC re-match** — precise docket PDF coords + SRBC-confirmed source name (3 runs per source: planSource+SRBC coord, SRBC name+SRBC coord, planSource+original coord)
-3. **WV border re-match** — combined PA+WV NHD, Mon→Monongahela expansion, fallback for generic extracted names
-
-Final match quality (1,035 candidates with extractable name):
-- Score ≥ 90: 846 (82%)
-- Score ≥ 80: 884 (85%)
-- Score < 60:  29 (<3%)
+2. **SRBC re-match** — precise docket PDF coords + SRBC-confirmed source name (3 runs per source)
+3. **WV border re-match** — combined PA+WV NHD, Mon→Monongahela expansion
+4. **DEP-assisted pass** — targets sources reclassified by `dep_matcher.ipynb`; uses DEP withdrawal-point coords and `dep_src` field as fallback search name (resolves SWW/WI entries e.g. "SUSQUEHANNA RIVER - SALSMAN" → Susquehanna River); 293 new/improved matches
 
 ## Key design decisions
 - **Well coordinates as proxy**: source locations are largely unknown; well lat/lon from
@@ -84,19 +88,24 @@ Final match quality (1,035 candidates with extractable name):
 - **50 km search radius**: generous enough to accommodate the proxy coordinate uncertainty
   while still filtering out same-named streams in other parts of PA.
 
-## Coordinate sources (priority)
-1. `master.Latitude/Longitude` — manually curated source coordinates (15 sources)
-2. Median `bgLatitude/bgLongitude` from `skinny_df` grouped by `planSource` — well proxy
+## Coordinate sources (priority, per planSource)
+1. `dep_lat / dep_lon` — PA DEP withdrawal-point coordinates (62.9% of sources, 76.6% of volume)
+2. `srbc_lat / srbc_lon` — SRBC docket PDF coordinates (2.8% of sources)
+3. `master.Latitude/Longitude` — site_ID-joined master table coords (3.3% of sources)
+4. Median `bgLatitude/bgLongitude` from `skinny_df` grouped by `planSource` — well proxy (32.3%)
+
+Overall: 98.7% of unique planSources are geolocated (99.2% of volume).
 
 ## Output files (`data/`)
 
 | File | Description |
 |---|---|
 | `nhd_match_results.parquet` | NHD match per unique candidate source: search_name, nhd_id, nhd_name, score, dist_km |
-| `junction_nhd_matched.parquet` | Full junction table (49,363 rows) with NHD match columns and `match_tier` added |
+| `junction_nhd_matched.parquet` | Junction table with NHD match columns and `match_tier` (intermediate; superseded by `junction_dep_updated`) |
+| `junction_dep_updated.parquet` | **Final output**: junction table with DEP match columns + reclassified source types |
 
-Volume by match tier (all junction rows): high ≥90: 40.5%, good 80-89: 1.1%, fair 60-79: 6.1%, low <60: 0.4%, unmatched: 51.9%.
-Of surface/impoundment/SRBC candidates: high+good covers 63.5% of candidate volume.
+Volume by match tier (all junction rows, after Pass 4): high ≥90: 51.4%, good 80-89: 2.5%, fair 60-79: 5.2%, low <60: 0.3%, unmatched: 40.6%.
+Of surface/impoundment/SRBC candidates: high+good covers 74.6% of candidate volume (unmatched 17.8%, mostly operator-named impoundments with no stream name).
 
 ## Additional notebooks / scripts
 
@@ -109,8 +118,17 @@ Outputs: `srbc_docket_info.parquet`, `srbc_coords_lookup.parquet`.
 Downloads WV NHD GDB, extracts eastern WV named features (lon > -82.5), builds
 `NHD_WV_named.gpkg` and `NHD_combined_named.gpkg` (PA + eastern WV, 189,708 features).
 
+### `dep_matcher.ipynb`
+Resolves `dont_know` and `ambiguous` planSources using PA DEP water resource point data
+(`data/PA resources/WaterResources2026_01.geojson`, 24,037 withdrawal points). Two-pass
+matching: operator-filtered first, global fallback for utility sources (Aqua, MAWC, etc.).
+Applies `RULE_FIXES` list (brine→reuse, quarry→groundwater, date-suffix inheritance).
+Exports 319 residuals to `manual_curation.csv` for manual entry (user filled 231/319,
+844.5 Mgal). Reads `junction_nhd_matched.parquet`, writes `junction_dep_updated.parquet`.
+DEP coordinate coverage: 57.1% of all junction rows (28,198/49,363).
+
 ### `analysis.ipynb`
-Loads `junction_nhd_matched.parquet` and produces:
+Loads `junction_dep_updated.parquet` and produces:
 - Volume by source type (pie chart)
 - NHD match quality by volume (tier table)
 - Top NHD features by withdrawal volume (bar chart)
@@ -118,12 +136,15 @@ Loads `junction_nhd_matched.parquet` and produces:
 - Well map colored by dominant source type (scatter, joins skinny_df for coords)
 - Reuse fraction trend by year
 - Volume by major river basin (Susquehanna, Monongahela, Ohio/Allegheny, etc.)
-- Unmatched/low-confidence inventory (dont_know, ambiguous, fair/low NHD matches)
-- Export: `nhd_feature_volume_summary.csv`
+- DEP matching coverage + residual inventory (ambiguous, fair/low NHD matches)
+- Geolocation coverage audit (section 10): coord source breakdown per planSource
+- Export: `nhd_feature_volume_summary.csv` (163 NHD features, high/good matches, 53,724 Mgal)
 
 ## Next priority
-**Improve coverage of ambiguous/unknown/low-confidence planSources** — `dont_know` (11% vol),
-`ambiguous` (4% vol), and fair/low NHD matches are the main remaining gap. Focused triage:
-- `dont_know` SWW/WI entries may be resolvable as interconnection via PA DEP PWSID lookup
-- `ambiguous` strings need rule review — some may be classifiable with additional regex
-- Fair/low NHD matches (score 60-79): some fixable with better name normalization
+**Classification coverage is essentially complete** — `dont_know` resolved to 0%, `ambiguous`
+to 0.2% of volume. Remaining gaps:
+- Remaining unmatched candidates (17.8% of candidate volume, ~12,600 Mgal): dominated by
+  operator-named impoundments (YOUNG, Parys, ZEFFER, etc.) — no stream name available, likely
+  the genuine floor without manual curation
+- Downstream deliverables: `watershed_report.ipynb` is the recommended next build —
+  stream-level withdrawal profiles, seasonal risk flags, operator ranking, filterable by HUC
