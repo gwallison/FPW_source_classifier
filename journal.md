@@ -402,3 +402,227 @@ Dominated by operator-named impoundments (YOUNG, Parys, ZEFFER, KRAUSE, etc.) wh
 Notable exceptions: "Northeast Marcellus Aqua Midstream" (421 Mgal) had bad DEP coord and may warrant manual attention.
 
 Output files updated: `data/junction_dep_updated.parquet`, `data/nhd_match_results.parquet`.
+
+---
+
+## 2026-04-27 — Project evaluation discussion
+
+### Topic: Update workflow readiness and periodic-vs-one-shot assessment
+
+Discussion context: upcoming project meeting to evaluate whether this is a one-shot analysis
+or a periodically updating project. Assessed the full pipeline from scraping through analysis.
+
+### Current state of the pipeline
+
+The pipeline has all required *components* but is **not update-ready** as built. Each notebook
+was developed iteratively and reads the prior stage's output; there is no incremental update
+logic. A naive full rerun would overwrite manual curation decisions.
+
+### Full pipeline stages and update burden
+
+**Stage 1 — Upstream scraping (outside this project)**
+An earlier project scrapes PA DEP fracking completion reports to produce `well_junction_table.parquet`.
+Key unknowns for the meeting:
+- Is the scraper maintained and functional?
+- How does PA DEP publish new completions — rolling updates, batch releases, API?
+- How much hand-cleaning is required post-scrape before data is usable here?
+This stage is the biggest wildcard and could dominate update cost.
+
+**Stage 2 — Reference data freshness**
+- NHD: essentially static; USGS updates infrequently — not a concern
+- PA DEP water resources geojson: current snapshot Jan 2026; updated pull is a one-time download
+- OpenFF (`skinny_df`): has a release cadence (filename dated 2026-04-03); new well coords
+  require updated version
+- SRBC dockets: new docket numbers from new completion reports require incremental PDF downloads
+
+**Stage 3 — This project's classification pipeline**
+- Source classification (regex): fully automated, near-zero effort
+- DEP matching: fully automated, near-zero effort
+- NHD matching: automated, but the 4-pass structure needs consolidation before it can run
+  cleanly as an update — estimated 1–2 sessions of work
+- **Manual curation:** the real recurring cost; original run had 319 residuals (231 filled).
+  Subsequent runs will have fewer (unusual operator names already resolved), but budget
+  ~2–4 hours of human review per update cycle
+
+### What an update-ready pipeline would require
+
+1. **Delta detection** — identify `planSource` values that are genuinely new vs. already classified
+2. **Carryover logic** — merge existing `nhd_match_results`, `dep_match_results`, and
+   `manual_curation.csv` so previously resolved sources don't get re-litigated
+3. **Orchestration** — a single script or clean "update" cell routing only new sources through
+   each stage and merging results back into the canonical output
+4. **Reference data versioning** — snapshot DEP geojson and OpenFF data at each update cycle
+
+Estimated build effort: **1–2 sessions** once the NHD matching passes are consolidated.
+
+### Decision framework for the meeting
+
+| Factor | One-shot | Periodic |
+|---|---|---|
+| Research question | Answered by 2026 snapshot | Requires trend analysis over time |
+| Scraper maintenance | High cost / fragile | Low cost / reliable |
+| Audience | Academic / single report | Advocacy / regulatory / ongoing monitoring |
+| Manual curation tolerance | Avoid recurring human time | Can absorb 2–4 hrs/cycle |
+
+### Key questions to resolve at the meeting
+1. What is the current state of the upstream scraper — who owns it, when was it last run,
+   how much manual cleaning did the last run require?
+2. How often does PA DEP publish new completion reports, and how many new records per cycle?
+3. Is the research question time-sensitive enough to require periodic updates, or is a 2026
+   snapshot sufficient for the planned deliverables?
+
+---
+
+## 2026-04-27 — Client value of NHD integration; reuse volume gap; completion-level fields
+
+### NHD integration: what it delivers to clients
+
+The core value of NHD linkage is converting a business record into a geography — a named
+planSource becomes a mappable, watershed-membered stream feature with a persistent ID.
+
+**Immediately available (all data in hand):**
+- **Stream-level withdrawal profiles** — per-NHD-feature totals (volume, operators, years).
+  `nhd_feature_volume_summary.csv` already has 163 features / 53,724 Mgal at high/good confidence.
+  Tunkhannock Creek leads at ~3,900 Mgal.
+- **Geographic concentration** — withdrawals mappable at stream level, rollable by HUC or county
+- **Reuse trend by operator** — year-by-year shift from surface water to recycled water
+- **Operator surface-water ranking** — leaderboard computable directly from `junction_dep_updated`
+
+**Requires modest additional work:**
+- **Low-flow season risk flags** — completion dates from `skinny_df` identify Jul–Oct withdrawals;
+  PA has no mandatory seasonal restrictions — a concrete regulatory advocacy point
+- **Headwater vulnerability** — stream order already in NHD GDB; 1st/2nd order streams with
+  material withdrawals are identifiable without new data
+
+**Key framing for clients:** Without NHD linkage you can only report volume by source type.
+With it you can state: *"Operators withdrew X Mgal from the Tunkhannock Creek watershed during
+low-flow months, representing Y% of average summer flow."* That is evidence usable in permit
+hearings. The 74.6% high+good match rate means this covers the substantial majority of the
+industry's surface water footprint, not a cherry-picked sample.
+
+### Reuse volume gap: completion-level fields not in current project
+
+The `well_junction_table` only captures the water source rows from each completion file
+(the `planSource` / `volume` table). Each completion file also carries three summary fields
+that were not brought into this project:
+
+| DEP field | Meaning |
+|---|---|
+| `totalGallons` | Total water used for the job (fresh + recycled) |
+| `baseWaterVolume` | Fresh/new water only — equals sum of planSource volumes |
+| `recycledWaterVolume` | Recycled/reuse component — NOT listed as planSource rows |
+
+**Confirmed relationship:** `baseWaterVolume + recycledWaterVolume = totalGallons` (verified
+on sample file: 9,280,561 + 6,509,885 = 15,790,446). In that example, recycled water was
+**41% of total** — entirely absent from our current analysis.
+
+**FracFocus cross-check:** `TotalBaseWaterVolume` in `disclosures.parquet` (OpenFF) aligns
+with `totalGallons` (all water including recycled), NOT with `baseWaterVolume`. It provides
+an independent cross-check on total water per job without reading individual DEP files; where
+they diverge, it may flag data quality or disclosure revision issues.
+
+**Implication for reuse reporting:** Our current 3% reuse figure captures only planSource
+rows explicitly labeled as recycled/flowback. The true reuse fraction — `recycledWaterVolume /
+totalGallons` — is almost certainly materially higher and is a more defensible metric for clients.
+
+### Data availability and next steps for completion-level fields
+
+- No consolidated parquet of completion-level summary fields exists yet in this project
+- Individual files are at `G:\My Drive\Info_home\Projects\Project_Homes\FPW_FracTracker\Completion_file_data\`
+  (named by api10 + timestamp, e.g. `3711722112_2-19-2025-9-00-48-AM.parquet`)
+- **Status filter is critical:** the folder contains both "Accepted" and "Submitted" DEP forms;
+  only "Accepted" should be used — "Submitted" records may be revised or rejected
+- Building the consolidated file will be done in a separate project, then brought here
+
+### managementPlanId clarification
+
+`managementPlanId` in the junction table is a **water management plan**, not a per-completion
+identifier. Cardinality check: only 339 unique plan IDs across 5,356 unique wells; 271 of 339
+plans cover multiple wells (some 30+). The right join key for completion-level volume fields
+is `saved_fn` (the specific completion file per well), not `managementPlanId`.
+
+### Additional companies in completion files
+
+Each completion file also lists service companies beyond the operator: `perfCompany`,
+`fracCompany`, `flowBackCompany`. These are not currently in the junction table. Clients
+may want to summarize withdrawals by these companies — e.g., which frac companies are most
+active in a watershed, or whether certain contractors correlate with specific sourcing patterns.
+Should be retained when the consolidated completion file is built.
+
+---
+
+## 2026-04-27 — Streamlit UI spike (`streamlit_app.py`)
+
+### Goal
+Spike an interactive map-based explorer to evaluate UI direction before investing in a
+full deliverable. Scope: local only, no deployment.
+
+### Stack
+Streamlit 1.56 + pydeck 0.9.1 + geopandas. Basemap: Carto Voyager (OSM-like, free, no API
+key, renders correctly as a GL style underneath pydeck vector layers).
+
+### Data loading
+- `junction_dep_updated.parquet` joined to `skinny_df` for well coordinates and completion year
+- NHD features loaded from `NHD_PA_named.gpkg` at startup, cached
+- All heavy loads wrapped in `@st.cache_data`
+
+### Map layers
+
+**Frac wells (`PolygonLayer`):** Hollow red squares — transparent fill, solid red outline.
+Sized by sqrt(volume_Mgal) scaled to degree half-width. Initial attempt used `ColumnLayer`
+with `disk_resolution=4` for squares, but ColumnLayer does not support hollow/stroked
+rendering at pitch=0 (stroked applies to column sides, not the top face). Switched to
+`PolygonLayer` with `get_fill_color=[0,0,0,0]` and `get_line_color=WELL_OUTLINE`.
+
+Fixed color (red) for all wells regardless of source type — wells draw from multiple source
+types so per-type coloring was misleading. Source type color is reserved for the source
+point layer.
+
+**Water source points (`ScatterplotLayer`):** Colored circles at `dep_lat/dep_lon`,
+colored by source type using the TYPE_COLOR palette.
+
+**NHD stream features (`GeoJsonLayer`):** Blue lines/polygons, `line_width_min_pixels=2`.
+
+### NHD display: two iterations
+
+**First approach (single matched segment):** Loaded NHD features by `permanent_identifier`
+(the single matched segment per source). Rendered correctly but showed only tiny slivers of
+stream — each NHD segment is short, and the matched segment may be miles from the actual
+withdrawal point.
+
+**Second approach (full named stream by gnis_name):** Switched to loading all segments
+sharing the matched `gnis_name`. Shows complete river/creek networks. Revealed a new problem:
+same-named streams elsewhere in PA (e.g., multiple "Pine Creek" drainages) appeared on the
+map with no associated source points.
+
+**Fix — per-name proximity filter:** After loading by `gnis_name`, filter segments to those
+within ~50km (0.5°) of an actual source coordinate (dep_lat/dep_lon preferred, well proxy
+fallback) that matched to that name. Each NHD segment must be near a dep dot to be shown.
+A coarser bounding box over all active sources was tried first but was insufficient because
+the box spans most of PA.
+
+### Sidebar filters
+- Operator multiselect
+- Source type multiselect
+- Completion year range slider (default floor: 2005)
+- NHD match tier multiselect
+- Layer toggles: wells / source points / NHD features
+
+### Tabs
+Three tabs below the map: top NHD features by volume, top operators by volume, top sources
+by volume — all reactive to the current sidebar filter.
+
+### Observations from spike
+- Map clearly shows NE PA Marcellus Shale well concentration with source streams visible
+- Hollow well squares allow source dots and NHD lines to show through the dense well cluster
+- NHD full-stream display is much more informative than single segments
+- Per-name proximity filter is the correct approach; validates that each displayed stream
+  segment has a real associated source point
+- The reuse volume gap and service company fields (perfCompany, fracCompany, flowBackCompany)
+  from completion files are noted as future enhancements once consolidated parquet is built
+
+### Identified future enhancements
+- Zoom-to-selection when operator filter is applied
+- Volume threshold slider for NHD layer (hide low-volume streams)
+- Source type breakdown in well tooltip on hover
+- Streamlit Cloud deployment (requires resolving large file hosting for NHD gpkg)

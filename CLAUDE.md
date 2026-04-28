@@ -140,11 +140,43 @@ Loads `junction_dep_updated.parquet` and produces:
 - Geolocation coverage audit (section 10): coord source breakdown per planSource
 - Export: `nhd_feature_volume_summary.csv` (163 NHD features, high/good matches, 53,724 Mgal)
 
+### `streamlit_app.py`
+Interactive local explorer for the completion data. Run with `streamlit run streamlit_app.py`.
+
+**Sidebar filters:** operator (multiselect), source type (multiselect), completion year range,
+NHD match tier, layer toggles (wells / source points / NHD streams).
+
+**Summary metrics:** total volume, well count, unique sources, operator count — all reactive
+to current filter.
+
+**Map (pydeck, Carto Voyager basemap):**
+- Frac well locations — hollow red squares (`PolygonLayer`), sized by total volume, fully
+  transparent fill so underlying features show through
+- Water source points — colored circles (`ScatterplotLayer`) at `dep_lat/dep_lon`, colored
+  by source type
+- NHD stream features — blue lines/polygons (`GeoJsonLayer`, `line_width_min_pixels=2`);
+  loaded by `gnis_name` to show complete named streams; filtered post-load to segments within
+  ~50km of an actual matched source coordinate (prevents same-named streams elsewhere in PA
+  from appearing)
+
+**Tabs below map:** top NHD features by volume, top operators, top sources (all filtered).
+
+**Key implementation notes:**
+- NHD features loaded from `NHD_PA_named.gpkg` by `gnis_name` (complete streams, not single
+  matched segments); proximity-filtered per stream name against dep_lat/dep_lon or well coords
+- Well squares built as `PolygonLayer` polygons (degree-space half-width scaled by sqrt(volume))
+  rather than `ColumnLayer` — ColumnLayer does not support hollow rendering at pitch=0
+- Data cached with `@st.cache_data`; NHD load cached on `gnis_names` tuple
+
 ## Next priority
 **Classification coverage is essentially complete** — `dont_know` resolved to 0%, `ambiguous`
 to 0.2% of volume. Remaining gaps:
 - Remaining unmatched candidates (17.8% of candidate volume, ~12,600 Mgal): dominated by
   operator-named impoundments (YOUNG, Parys, ZEFFER, etc.) — no stream name available, likely
   the genuine floor without manual curation
+- **Reuse volume gap**: completion-level `recycledWaterVolume` field not yet in project;
+  requires building consolidated completion parquet from individual DEP files (Accepted only)
+- **UI explorer**: `streamlit_app.py` is a working local spike; future work includes
+  zoom-to-operator, volume threshold slider for NHD layer, and Streamlit Cloud deployment
 - Downstream deliverables: `watershed_report.ipynb` is the recommended next build —
   stream-level withdrawal profiles, seasonal risk flags, operator ranking, filterable by HUC
