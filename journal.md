@@ -626,3 +626,43 @@ by volume — all reactive to the current sidebar filter.
 - Volume threshold slider for NHD layer (hide low-volume streams)
 - Source type breakdown in well tooltip on hover
 - Streamlit Cloud deployment (requires resolving large file hosting for NHD gpkg)
+
+---
+
+## 2026-05-06 — Session 5
+
+### Step 20 — Investigation: Impoundment Geolocation Sources
+
+Investigated the provenance of geolocations assigned to "impoundment" source types to ensure data lineage is clear. Findings:
+
+**1. Primary Geolocation Sources:**
+- **PA DEP (PASDA/WMPDU):** Most coordinates originate from Pennsylvania DEP datasets. The `dep_matcher.ipynb` logic links `planSource` strings to official DEP withdrawal points (Surface/Ground/Interconnection) using fuzzy matching on organization and site names.
+- **SRBC (Susquehanna River Basin Commission):** For records with docket numbers, coordinates are parsed directly from approval PDFs (via `srbc_docket_lookup.ipynb`). This provides the most precise "at-the-pipe" location.
+- **Well Proxies (Fallback):** For sources not found in DEP/SRBC records, a proxy location is assigned based on the median latitude and longitude of all wells (`api10`) associated with that source string.
+
+**2. Assignment Methodology:**
+- **Classification:** Regex identifies "impoundment", "pit", or "frac pond" in `planSource`.
+- **Fuzzy Matching:** `rapidfuzz` (specifically `token_set_ratio`) matches these strings against DEP `SUB_FACILI` names.
+- **Spatial Validation:** Matches are validated by proximity to reporting wells to prevent cross-county misidentification.
+- **Final Table:** Results are consolidated in `data/junction_dep_updated.parquet`, where columns like `dep_lat`, `dep_lon`, and `dep_src` indicate the specific source of the coordinates.
+
+This multi-tiered approach ensures that even "generic" impoundment strings (e.g., "Kuhns Freshwater Impoundment") are mapped to real-world withdrawal infrastructure where regulatory records exist.
+
+### Step 21 — Investigation: Out-of-State Geolocation (OH/WV)
+
+Investigated how water sources located in Ohio (OH) and West Virginia (WV) are geolocated, as these fall outside the primary PA dataset.
+
+**1. PA DEP "Border" Records:**
+- Several out-of-state withdrawal points are explicitly included in the PA DEP `WaterResources2026_01.geojson` dataset. These represent border-adjacent sites (e.g., "OHIO RIVER AT FOLLANSBEE - WV", "MIDDLE WV FORK FISH CREEK") that are permitted by PA DEP for use in Pennsylvania operations. 
+- These sites have high `dep_score` (100) and precise coordinates provided directly by the PA DEP.
+
+**2. Combined PA+WV NHD Dataset:**
+- To support surface water matching in West Virginia, the project created a combined NHD dataset (`NHD_combined_named.gpkg`) by merging PA named features with eastern WV features (lon > -82.5).
+- This enables high-confidence matching (Score 100) for major features like the Ohio River, Monongahela River, and Fish Creek WV, even when the withdrawal is physically in West Virginia.
+
+**3. Well Proxy fallback for Out-of-State Sites:**
+- For OH/WV sites not found in the PA DEP database (e.g., "Ohio River at Beech Bottom, WV"), geolocation relies on **Well Proxies**. 
+- Because the wells reporting these sources are typically located in PA border counties (e.g., Washington, Greene), their median location serves as a valid spatial anchor. The NHD matcher uses this proxy to find the correct feature in the combined PA+WV NHD dataset within a 50km radius.
+
+**4. WV-Specific Normalization:**
+- Targeted normalization rules (e.g., `Mon` → `Monongahela`, `Nunkard` → `Dunkard`) were implemented in `nhd_matcher.ipynb` specifically to handle common abbreviations and OCR errors in West Virginia source strings.
