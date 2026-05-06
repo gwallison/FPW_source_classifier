@@ -666,3 +666,20 @@ Investigated how water sources located in Ohio (OH) and West Virginia (WV) are g
 
 **4. WV-Specific Normalization:**
 - Targeted normalization rules (e.g., `Mon` → `Monongahela`, `Nunkard` → `Dunkard`) were implemented in `nhd_matcher.ipynb` specifically to handle common abbreviations and OCR errors in West Virginia source strings.
+
+### Step 22 — SRBC WAAV Online Resources
+
+Documented two key SRBC (Susquehanna River Basin Commission) online resources used for verifying and geolocating natural gas water sources within the Susquehanna basin.
+
+**1. [Approved Source List for Natural Gas Development](https://www.srbc.gov/waav/ApprovedSourceList):**
+- **Purpose:** A curated directory of all water sources approved for use by the natural gas industry.
+- **Key Data:** Lists Project Sponsor (operator), Source Name, Application Type (Surface, Ground, Public), maximum withdrawal (mgd), and location (Township, County).
+- **Utility:** Used to cross-reference `planSource` strings with official "Approved Source" names and to verify the operator responsible for each withdrawal point.
+
+**2. [Water Project Map (WAAV Map)](https://www.srbc.gov/waav/Map):**
+- **Purpose:** An interactive GIS viewer for all SRBC-regulated water projects.
+- **Key Features:**
+    - **Visual Geolocation:** Displays exact coordinates for withdrawal points, gas pads, and consumptive use sites.
+    - **Filtering:** Allows isolating "Crude Petroleum and Natural Gas Extraction" industry projects.
+    - **Context Layers:** Includes impaired streams, stressed areas, and environmental justice zones, providing ecological context for each geolocated source.
+- **Utility:** Provides the spatial ground truth for "at-the-pipe" withdrawal locations and allows for visual verification of NHD matches against known industrial infrastructure.
